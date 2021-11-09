@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GeoExplor1</string>
+    <string name="title_activity_course_creation_map">CourseCreationMap</string>
 </resources>

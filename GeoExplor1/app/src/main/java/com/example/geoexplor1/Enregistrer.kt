@@ -12,17 +12,16 @@ import java.util.jar.Attributes
 class Enregistrer : AppCompatActivity() {
     var database = FirebaseDatabase.getInstance()
     var name = database.getReference("message")
-    var email =
+    var email = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enregistrer)
-        m_name = (EditText) findViewById(R.id.Name);
-
-
+        var m_name = findViewById<EditText>(R.id.Name);
     }
 
     fun Continue(view: View?) {
-       // myRef.setValue();
+        // myRef.setValue();
 
 
 
