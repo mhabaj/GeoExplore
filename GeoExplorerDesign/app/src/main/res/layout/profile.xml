@@ -215,17 +215,15 @@
 
                 </TableLayout>
 
-                <Button
-                    android:id="@+id/button13"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginTop="20dp"
-                    android:background="@android:drawable/presence_invisible"
+                    android:clickable="true"
                     app:backgroundTint="#FFFFFF"
-                    app:icon="@drawable/ic_icon_add"
-                    app:iconGravity="textTop"
-                    app:iconTint="#000000" />
+                    app:srcCompat="@drawable/ic_icon_add"
+                    tools:ignore="VectorDrawableCompat" />
 
             </LinearLayout>
         </ScrollView>

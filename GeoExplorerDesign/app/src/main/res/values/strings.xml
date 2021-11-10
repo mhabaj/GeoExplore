@@ -19,6 +19,9 @@
     <string name="times">Times</string>
     <string name="chat">Chat</string>
     <string name="photos">Photos</string>
-    <string name="course">Course</string>
     <string name="friends">Friends</string>
+    <string name="create">CREATE</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="feed">Feed</string>
 </resources>
