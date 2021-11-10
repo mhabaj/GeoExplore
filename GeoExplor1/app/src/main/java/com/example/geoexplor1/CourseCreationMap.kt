@@ -2,9 +2,14 @@ package com.example.geoexplor1
 
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.EditText
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -16,8 +21,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.CircleOptions
+import java.io.IOException
 
-class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapLongClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var lastLocation: Location
@@ -36,20 +42,12 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.setOnMarkerClickListener(this)
+        mMap.setOnMapLongClickListener(this)
 
         setUpMap()
     }
@@ -68,9 +66,7 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-                placeMarkerOnMap(currentLatLng)
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 14f))
-                addCircle(LatLng(48.420708, -71.065100), Color.BLUE, Color.CYAN)
             }
         }
     }
@@ -78,19 +74,44 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     private fun addCircle(location: LatLng, strokeColor: Int, fillColor: Int) {
         mMap.addCircle(CircleOptions().center(location)
             .radius(250.0)
-            .strokeWidth(2.0F)
+            .strokeWidth(3.0F)
             .strokeColor(strokeColor)
             .fillColor(fillColor))
-    }
-
-    private fun placeMarkerOnMap(location: LatLng) {
-        val markerOptions = MarkerOptions().position(location)
-        mMap.addMarker(markerOptions)
     }
 
     override fun onMarkerClick(p0: Marker?) = false
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+    }
+
+    override fun onMapLongClick(p0: LatLng) {
+        addCircle(p0, Color.parseColor("#58ef60"), Color.parseColor("#9cef58"))
+        mMap.addMarker(MarkerOptions().position(p0).title("New Course"))
+    }
+
+    fun searchLocation(view: View?) {
+        val locationSearch = findViewById<View>(R.id.editText) as EditText
+        val location = locationSearch.text.toString()
+        var addressList: List<Address>? = null
+        if (location != null || location != "") {
+            val geocoder = Geocoder(this)
+            try {
+                addressList = geocoder.getFromLocationName(location, 1)
+                val address: Address = addressList!![0]
+                val latLng = LatLng(address.latitude, address.longitude)
+                mMap.addMarker(MarkerOptions().position(latLng).title(location))
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+                Toast.makeText(
+                    applicationContext,
+                    address.latitude.toString() + " " + address.longitude,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            catch (e: IOException) {
+                Toast.makeText(applicationContext, "Failed to find location", Toast.LENGTH_LONG)
+            }
+
+        }
     }
 }
