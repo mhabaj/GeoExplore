@@ -22,6 +22,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.CircleOptions
 import java.io.IOException
+import java.lang.IndexOutOfBoundsException
 
 class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapLongClickListener {
 
@@ -29,6 +30,8 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     private lateinit var lastLocation: Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
+    private var circle : Circle? = null
+    private var marker: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,11 +75,19 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     }
 
     private fun addCircle(location: LatLng, strokeColor: Int, fillColor: Int) {
-        mMap.addCircle(CircleOptions().center(location)
+        circle?.remove()
+
+        circle = mMap.addCircle(CircleOptions().center(location)
             .radius(250.0)
             .strokeWidth(3.0F)
             .strokeColor(strokeColor)
             .fillColor(fillColor))
+    }
+
+    private fun addMarker(location: LatLng) {
+        marker?.remove()
+
+        marker = mMap.addMarker(MarkerOptions().position(location).title("New Course"))
     }
 
     override fun onMarkerClick(p0: Marker?) = false
@@ -87,7 +98,7 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
 
     override fun onMapLongClick(p0: LatLng) {
         addCircle(p0, Color.parseColor("#58ef60"), Color.parseColor("#9cef58"))
-        mMap.addMarker(MarkerOptions().position(p0).title("New Course"))
+        addMarker(p0)
     }
 
     fun searchLocation(view: View?) {
@@ -109,6 +120,9 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
                 ).show()
             }
             catch (e: IOException) {
+                Toast.makeText(applicationContext, "Failed to find location", Toast.LENGTH_LONG)
+            }
+            catch (e: IndexOutOfBoundsException) {
                 Toast.makeText(applicationContext, "Failed to find location", Toast.LENGTH_LONG)
             }
 
