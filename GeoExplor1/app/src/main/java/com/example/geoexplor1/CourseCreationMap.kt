@@ -8,6 +8,8 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.View.VISIBLE
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -99,6 +101,7 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     override fun onMapLongClick(p0: LatLng) {
         addCircle(p0, Color.parseColor("#58ef60"), Color.parseColor("#9cef58"))
         addMarker(p0)
+        findViewById<Button>(R.id.confirm_button).visibility = VISIBLE
     }
 
     fun searchLocation(view: View?) {

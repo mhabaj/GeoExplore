@@ -29,4 +29,13 @@
             android:text="Search" />
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm_button"
+        android:text="Confirm Location"
+        android:visibility="invisible"
+        android:layout_gravity="bottom"
+        />
 </fragment>
