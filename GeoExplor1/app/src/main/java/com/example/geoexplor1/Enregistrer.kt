@@ -21,8 +21,6 @@ import com.google.android.gms.tasks.OnCompleteListener
 
 
 
-
-
 class Enregistrer : AppCompatActivity() {
 
     private  var m_name :EditText? = null
@@ -45,11 +43,11 @@ class Enregistrer : AppCompatActivity() {
 
     fun Continue(view: View?) {
         var f_auth = FirebaseAuth.getInstance()
-
+/*
         if(f_auth.currentUser != null) {
             startActivity(Intent(applicationContext, MainActivity::class.java))
             finish()
-        }
+        }*/
 
 
         //Verification
