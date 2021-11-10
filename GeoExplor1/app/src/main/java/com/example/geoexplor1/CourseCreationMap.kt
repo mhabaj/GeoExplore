@@ -1,5 +1,7 @@
 package com.example.geoexplor1
 
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Address
@@ -9,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.View.VISIBLE
+import android.view.Window
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -31,11 +35,18 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     private lateinit var mMap: GoogleMap
     private lateinit var lastLocation: Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var searchView: SearchView
 
     private var circle : Circle? = null
     private var marker: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //Hide title bar
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        supportActionBar?.hide()
+
+        //Set view
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_creation_map)
 
@@ -45,14 +56,31 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         mapFragment.getMapAsync(this)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+        // Create SearchView listener
+        searchView = findViewById<SearchView>(R.id.searchViewLocation);
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                searchLocation(searchView)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String) = false
+        })
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
         mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isZoomGesturesEnabled = true
+        mMap.uiSettings.isMapToolbarEnabled = false
+
+
         mMap.setOnMarkerClickListener(this)
         mMap.setOnMapLongClickListener(this)
+
+        mMap.setPadding(0,0,0,135)
 
         setUpMap()
     }
@@ -76,11 +104,17 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         }
     }
 
+    private fun setCourseLocation(location: LatLng) {
+        addCircle(location, Color.argb(99, 51, 153, 51), Color.argb(50, 51, 153, 51))
+        addMarker(location)
+        findViewById<Button>(R.id.confirm_button).isEnabled = true
+    }
+
     private fun addCircle(location: LatLng, strokeColor: Int, fillColor: Int) {
         circle?.remove()
 
         circle = mMap.addCircle(CircleOptions().center(location)
-            .radius(250.0)
+            .radius(500.0)
             .strokeWidth(3.0F)
             .strokeColor(strokeColor)
             .fillColor(fillColor))
@@ -88,7 +122,6 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
 
     private fun addMarker(location: LatLng) {
         marker?.remove()
-
         marker = mMap.addMarker(MarkerOptions().position(location).title("New Course"))
     }
 
@@ -99,14 +132,11 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     }
 
     override fun onMapLongClick(p0: LatLng) {
-        addCircle(p0, Color.parseColor("#58ef60"), Color.parseColor("#9cef58"))
-        addMarker(p0)
-        findViewById<Button>(R.id.confirm_button).visibility = VISIBLE
+        setCourseLocation(p0)
     }
 
     fun searchLocation(view: View?) {
-        val locationSearch = findViewById<View>(R.id.editText) as EditText
-        val location = locationSearch.text.toString()
+        val location = searchView.query.toString()
         var addressList: List<Address>? = null
         if (location != null || location != "") {
             val geocoder = Geocoder(this)
@@ -114,8 +144,13 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
                 addressList = geocoder.getFromLocationName(location, 1)
                 val address: Address = addressList!![0]
                 val latLng = LatLng(address.latitude, address.longitude)
-                mMap.addMarker(MarkerOptions().position(latLng).title(location))
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+
+                marker?.remove()
+                marker = mMap.addMarker(MarkerOptions().position(latLng).title(location))
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f))
+
+                setCourseLocation(latLng)
+
                 Toast.makeText(
                     applicationContext,
                     address.latitude.toString() + " " + address.longitude,
@@ -123,12 +158,23 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
                 ).show()
             }
             catch (e: IOException) {
-                Toast.makeText(applicationContext, "Failed to find location", Toast.LENGTH_LONG)
+                Toast.makeText(applicationContext, "Failed to find location", Toast.LENGTH_LONG).show()
             }
             catch (e: IndexOutOfBoundsException) {
-                Toast.makeText(applicationContext, "Failed to find location", Toast.LENGTH_LONG)
+                Toast.makeText(applicationContext, "Failed to find location", Toast.LENGTH_LONG).show()
+            }
+
+            // Hide keyboard
+            val view = this.currentFocus
+            if (view != null) {
+                val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
             }
 
         }
+    }
+
+    fun registerCourse(view: View) {
+        val newIntent = Intent()
     }
 }
