@@ -4,35 +4,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/accueil">
+    android:background="@drawable/bg_course_search">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/ic_logo"
-            app:backgroundTint="#25BF72"
-            app:icon="@drawable/ic_compas"
-            app:iconGravity="textTop"
-            app:iconSize="@android:dimen/app_icon_size"
-            app:iconTint="#FFFFFF" />
+            android:textColorHint="#FFFFFF"
+            app:hintTextColor="#FFFFFF"
+            app:startIconDrawable="@drawable/ic_search"
+            app:startIconTint="#FFFFFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/search"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
+            android:layout_marginTop="30dp"
             android:background="@drawable/ic_bg_textfield"
             android:gravity="center">
 
@@ -46,20 +55,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:backgroundTint="#FFFFFF"
-                    app:icon="@drawable/ic_map_marker_alt_solid"
+                    app:icon="@drawable/ic_walking_solid"
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
-                    app:iconTint="#AEAAAA" />
+                    app:iconTint="#25BF72" />
 
                 <Button
                     android:id="@+id/button7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:backgroundTint="#FFFFFF"
-                    app:icon="@drawable/ic_search_location_solid"
+                    app:icon="@drawable/ic_flag_checkered_solid"
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
-                    app:iconTint="#86E5B5" />
+                    app:iconTint="#25413E" />
 
                 <Button
                     android:id="@+id/button8"
@@ -67,10 +76,10 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     app:backgroundTint="#FFFFFF"
-                    app:icon="@drawable/ic_user_circle_regular"
+                    app:icon="@drawable/ic_heart"
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
-                    app:iconTint="#1a8a52" />
+                    app:iconTint="#46C2A4" />
             </TableRow>
 
             <TableRow
@@ -84,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:text="@string/history" />
+                    android:text="@string/distance" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -92,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:text="@string/course" />
+                    android:text="@string/difficulty" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -100,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:text="@string/profil" />
+                    android:text="@string/interests" />
             </TableRow>
 
             <TableRow
@@ -115,10 +124,10 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     app:backgroundTint="#FFFFFF"
-                    app:icon="@drawable/ic_notification"
+                    app:icon="@drawable/ic_star_regular"
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
-                    app:iconTint="#25bf72" />
+                    app:iconTint="#39AEAA" />
 
                 <Button
                     android:id="@+id/button10"
@@ -126,10 +135,22 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     app:backgroundTint="#FFFFFF"
-                    app:icon="@drawable/ic_settings"
+                    app:icon="@drawable/ic_calendar_alt"
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
-                    app:iconTint="#515151" />
+                    app:iconTint="#5D5D5D" />
+
+                <Button
+                    android:id="@+id/button11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:backgroundTint="#FFFFFF"
+                    app:icon="@drawable/ic_clock"
+                    app:iconGravity="textTop"
+                    app:iconSize="30dp"
+                    app:iconTint="#39AEAA" />
+
             </TableRow>
 
             <TableRow
@@ -143,17 +164,23 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:text="@string/notification" />
+                    android:text="@string/rating" />
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/settings" />
+                    android:text="@string/disponibility" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/times" />
             </TableRow>
 
         </TableLayout>
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
