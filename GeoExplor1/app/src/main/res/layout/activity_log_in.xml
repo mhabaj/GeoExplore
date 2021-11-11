@@ -87,6 +87,7 @@
         android:background="@drawable/ic_bg_button"
         android:gravity="center"
         android:text="@string/next"
+        android:onClick="PageAccueil"
         android:textColor="#FFFFFF"
         app:backgroundTint="#25BF72" />
 

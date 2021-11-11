@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -20,7 +17,6 @@ import androidx.annotation.NonNull
 import com.google.android.gms.tasks.OnCompleteListener
 
 
-
 class Enregistrer : AppCompatActivity() {
 
     private  var m_name :EditText? = null
@@ -28,6 +24,7 @@ class Enregistrer : AppCompatActivity() {
     private var m_password: EditText? = null
     private val TAG = "MyActivity"
     private var progress_bar : ProgressBar? =null
+    private var m_Resultat:TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +34,7 @@ class Enregistrer : AppCompatActivity() {
         m_email = findViewById<EditText>(R.id.editTextTextEmailAddress)
         m_password = findViewById<EditText>(R.id.editTextTextPassword)
         progress_bar = findViewById<ProgressBar>(R.id.progressBarRecherche)
+        m_Resultat = findViewById<TextView>(R.id.textAffichageResultat)
 
 
     }
@@ -68,19 +66,20 @@ class Enregistrer : AppCompatActivity() {
         }
 
         progress_bar?.setVisibility(View.VISIBLE)
+        m_Resultat?.setVisibility(View.VISIBLE)
 
         // Enregistrer l'utilisateur dans la base de données
 
         f_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
             if(taskId.isSuccessful) {
-                Log.d(TAG, "User Created." )
-                Toast.makeText(this,"User Created.", Toast.LENGTH_SHORT ).show()
-                startActivity(Intent(applicationContext, MainActivity::class.java))
+                m_Resultat?.setText("User Created ! ")
+                startActivity(Intent(applicationContext, Accueil::class.java))
             }
-            else Log.d(TAG, "Error !!"+ taskId.exception)
-
+            else {
+                m_Resultat?.setText("Error !!"+ taskId.exception)
+                progress_bar?.setVisibility(View.INVISIBLE)
+            }
         }
-
     }
 
 

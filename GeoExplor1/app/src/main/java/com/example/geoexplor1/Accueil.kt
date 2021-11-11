@@ -5,23 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 
-class LogIn : AppCompatActivity() {
+class Accueil : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_log_in)
+        setContentView(R.layout.activity_accueil)
     }
 
-
-    fun SignUp(view: View?) {
-        val intent = Intent(this, Enregistrer::class.java)
+    fun RechercherCourse(view: View){
+        val intent = Intent(this, Recherche::class.java)
         startActivity(intent)
-
     }
 
-    fun PageAccueil(view: View?) {
-        val intent = Intent(this, Accueil::class.java)
-        startActivity(intent)
-
-    }
 
 }
