@@ -25,7 +25,7 @@
         android:textAlignment="center"
         android:background="#FFFFFF"
         android:text="Search a location or long press on the map to select the location of your course"
-        android:layout_below="@+id/searchViewLocation"/>
+        />
 
     <!--search view to search our location-->
     <androidx.appcompat.widget.SearchView
