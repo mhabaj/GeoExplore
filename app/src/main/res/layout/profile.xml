@@ -161,27 +161,9 @@
                             app:iconSize="30dp"
                             app:iconTint="#46C2A4" />
 
-                        <Button
-                            android:id="@+id/button10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            app:backgroundTint="#FFFFFF"
-                            app:icon="@drawable/ic_settings"
-                            app:iconGravity="textTop"
-                            app:iconSize="30dp"
-                            app:iconTint="#515151" />
 
-                        <Button
-                            android:id="@+id/button12"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            app:backgroundTint="#FFFFFF"
-                            app:icon="@drawable/ic_notification"
-                            app:iconGravity="textTop"
-                            app:iconSize="30dp"
-                            app:iconTint="#25bf72" />
+
+
                     </TableRow>
 
                     <TableRow
