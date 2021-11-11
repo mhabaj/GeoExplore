@@ -1,4 +1,4 @@
-package uqac.geoexplorer
+package com.uqac.geoexplore.activity
 
 import android.R.layout
 import android.graphics.Bitmap

@@ -43,6 +43,7 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
     implementation ('eu.livotov.labs.android:CAMView:2.0.1@aar') {transitive=true}
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

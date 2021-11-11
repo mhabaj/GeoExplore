@@ -1,4 +1,4 @@
-package uqac.geoexplorer
+package com.uqac.geoexplore.activity
 import android.Manifest.permission
 import android.R.layout
 import android.content.pm.PackageManager
