@@ -125,7 +125,7 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         marker = mMap.addMarker(MarkerOptions().position(location).title("New Course"))
     }
 
-    override fun onMarkerClick(p0: Marker?) = false
+    override fun onMarkerClick(p0: Marker): Boolean = false
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -177,4 +177,6 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     fun registerCourse(view: View) {
         val newIntent = Intent()
     }
+
+
 }
