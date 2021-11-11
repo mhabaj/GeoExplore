@@ -26,7 +26,7 @@
 
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key"/>
 
-        <activity android:name=".CourseCreationMap" android:label="@string/title_activity_course_creation_map" android:exported="true"/>
+        <activity android:name=".activity.CourseCreationMap" android:label="@string/title_activity_course_creation_map" android:exported="true"/>
     </application>
 
 </manifest>
