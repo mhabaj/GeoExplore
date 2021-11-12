@@ -102,6 +102,8 @@
                             app:iconSize="30dp"
                             app:iconTint="#B7EFE2" />
 
+
+                        <!--android:onClick="course" -->
                         <Button
                             android:id="@+id/button8"
                             android:layout_width="wrap_content"
@@ -149,9 +151,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="20dp"
                         android:gravity="center">
-
                         <Button
-                            android:id="@+id/button9"
+                            android:id="@+id/buttonFriends"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -159,9 +160,32 @@
                             app:icon="@drawable/ic_friends"
                             app:iconGravity="textTop"
                             app:iconSize="30dp"
-                            app:iconTint="#46C2A4" />
+                            app:iconTint="#46C2A4"
+                            />
 
+                        <Button
+                            android:id="@+id/buttonSettings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            app:backgroundTint="#FFFFFF"
+                            app:icon="@drawable/ic_settings"
+                            app:iconGravity="textTop"
+                            app:iconSize="30dp"
+                            app:iconTint="#515151"
+                            android:onClick="settings"/>
 
+                        <Button
+                            android:id="@+id/buttonNotif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="77dp"
+                            android:gravity="center"
+                            app:backgroundTint="#FFFFFF"
+                            app:iconGravity="textTop"
+                            app:iconSize="30dp"
+                            app:icon="@drawable/ic_notification"
+                            app:srcCompat="@drawable/ic_home"
+                            app:iconTint="#9599B3" />
 
 
                     </TableRow>

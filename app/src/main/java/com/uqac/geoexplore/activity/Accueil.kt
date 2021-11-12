@@ -17,8 +17,14 @@ class Accueil : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun Settings(view: View?) {
-        val intent = Intent(this, Settings::class.java)
+    fun settings(view: View?) {
+        val intent = Intent(this, Settings2::class.java)
+        startActivity(intent)
+
+    }
+
+    fun profile(view: View?) {
+        val intent = Intent(this, Profile::class.java)
         startActivity(intent)
 
     }
