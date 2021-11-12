@@ -9,9 +9,6 @@ import com.uqac.geoexplore.R
 
 class Settings: AppCompatActivity()  {
 
-
-
-
     class Settings : AppCompatActivity() {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
