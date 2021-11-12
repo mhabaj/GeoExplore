@@ -3,6 +3,7 @@ package com.uqac.geoexplore.activity
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
@@ -26,7 +27,8 @@ class CourseCreation : AppCompatActivity() {
         courseLocation = findViewById(R.id.courseLocation)
         courseInterests = findViewById(R.id.courseInterests)
 
-        courseLocation.setText(intent.extras?.get("location").toString())
+        val location: LatLng = intent.extras?.get("location") as LatLng
+        courseLocation.setText(location.latitude.toString() + ", " + location.longitude.toString())
     }
 
     fun addCourseInDatabase(view: android.view.View) {
