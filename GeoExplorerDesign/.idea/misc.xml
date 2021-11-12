@@ -3,11 +3,38 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< Updated upstream
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/activity_sign_in.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/sign_in.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/sign_up.xml" value="0.25416666666666665" />
+=======
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/button_log.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/ic_flag_checkered_solid.xml" value="0.14074074074074075" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/ic_heart.xml" value="0.14074074074074075" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/ic_icon_add.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/ic_icons_dark_edit.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/ic_qrcode_solid.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/ic_search.xml" value="0.14074074074074075" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/ic_star_regular.xml" value="0.14074074074074075" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/drawable/ic_walking_solid.xml" value="0.14074074074074075" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/accueil.xml" value="0.25" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/course.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/course_search.xml" value="0.25" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/create_course.xml" value="0.264" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/detail_course.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/feed.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/friends.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/profile.xml" value="0.2" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/qrcode.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/read_qrcode.xml" value="0.12310030395136778" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/sign_in.xml" value="0.12310030395136778" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/GeoExplorerDesign/app/src/main/res/layout/sign_up.xml" value="0.12310030395136778" />
+>>>>>>> Stashed changes
       </map>
     </option>
   </component>

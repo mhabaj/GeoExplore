@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoExplor1">
         <activity
+<<<<<<< Updated upstream
+=======
+            android:name=".Profile"
+            android:exported="true" />
+        <activity
+            android:name=".Settings"
+            android:exported="true" />
+        <activity
+>>>>>>> Stashed changes
             android:name=".Accueil"
             android:exported="true" />
         <activity
