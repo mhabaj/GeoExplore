@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoExplor1">
         <activity
+            android:name=".Settings"
+            android:exported="true" />
+        <activity
             android:name=".Accueil"
             android:exported="true" />
         <activity
