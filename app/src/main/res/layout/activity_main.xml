@@ -40,10 +40,11 @@
         android:textSize="16sp"
         app:backgroundTint="#25BF72"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="logIn"/>
 
     <Button
-        android:id="@+id/signIn"
+        android:id="@+id/signUp"
         android:layout_width="match_parent"
         android:layout_height="69dp"
         android:background="@drawable/button_sign"
@@ -53,7 +54,8 @@
         android:textSize="16sp"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="signUp"/>
 
     <TextView
         android:id="@+id/textView3"

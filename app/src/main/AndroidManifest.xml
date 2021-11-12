@@ -18,6 +18,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoExplorer">
         <activity
+            android:name=".activity.Settings"
+            android:exported="true" />
+        <activity
+            android:name=".activity.Accueil"
+            android:exported="true" />
+        <activity
+            android:name=".activity.Recherche"
+            android:exported="true" />
+        <activity
+            android:name=".activity.LogIn"
+            android:exported="true" />
+        <activity
+            android:name=".activity.Enregistrer"
+            android:exported="true" />
+        <activity
             android:name=".activity.QrCodeActivity"
             android:exported="true"/>
         <activity

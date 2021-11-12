@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/ic_bg_button"
-                android:onClick="LogIn"
+                android:onClick="logIn"
                 android:text="Sign"
                 android:textColor="#FFFFFF"
                 app:backgroundTint="#25BF72" />
