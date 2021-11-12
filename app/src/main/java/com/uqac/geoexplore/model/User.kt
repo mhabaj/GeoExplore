@@ -7,5 +7,4 @@ class User {
     private lateinit  var email : String
     private lateinit  var password : String
     private lateinit  var qrcode : String
-
 }
