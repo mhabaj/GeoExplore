@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">GeoExplore</string>
     <string name="title_activity_course_creation_map">CourseCreationMap</string>
-    <string name= "sign">SIGN UP</string>
-    <string name= "sign_in">SIGN IN</string>
+    <string name="sign">SIGN UP</string>
+    <string name="sign_in">SIGN IN</string>
     <string name="log">LOG IN</string>
     <string name="next">CONTINUE</string>
     <string name="forgot">FORGOT PASSWORD</string>
