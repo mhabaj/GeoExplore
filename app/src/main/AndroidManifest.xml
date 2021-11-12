@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoExplorer">
         <activity
+        android:name=".activity.Profile"
+        android:exported="true" />
+        <activity
             android:name=".activity.Settings"
             android:exported="true" />
         <activity
