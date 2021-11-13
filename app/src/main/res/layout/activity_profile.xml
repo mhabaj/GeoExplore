@@ -155,7 +155,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:onClick="Friends"
+                            android:onClick="Friend"
                             app:backgroundTint="#FFFFFF"
                             app:icon="@drawable/ic_friends"
                             app:iconGravity="textTop"

@@ -20,7 +20,7 @@ class Profile : AppCompatActivity() {
 
     }
 
-    fun Friends(view: View) {
+    fun Friend(view: View) {
         val intent = Intent(this, Friends::class.java)
         startActivity(intent)
 

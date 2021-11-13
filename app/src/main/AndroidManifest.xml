@@ -36,6 +36,9 @@
             android:name=".activity.Enregistrer"
             android:exported="true" />
         <activity
+            android:name=".activity.Friends"
+            android:exported="true" />
+        <activity
             android:name=".activity.QrCodeActivity"
             android:exported="true"/>
         <activity
