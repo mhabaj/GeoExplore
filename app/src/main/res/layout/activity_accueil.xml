@@ -68,12 +68,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
+                    android:onClick="Profil"
                     app:backgroundTint="#FFFFFF"
                     app:icon="@drawable/ic_user_circle_regular"
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
-                    app:iconTint="#1a8a52"
-                    />
+                    app:iconTint="#1a8a52" />
             </TableRow>
 
             <TableRow

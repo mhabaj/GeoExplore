@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/ic_bg_button"
-                android:onClick="logIn"
+                android:onClick="LogIn"
                 android:text="Sign"
                 android:textColor="#FFFFFF"
                 app:backgroundTint="#25BF72" />
@@ -62,8 +62,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
-                android:text="Name"
                 android:textColor="#8E8585" />
 
             <EditText
@@ -72,8 +72,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                android:text="Email"
                 android:textColor="#958D8D" />
 
             <EditText
@@ -82,8 +82,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
+                android:hint="@string/password"
                 android:inputType="textPassword"
-                android:text="Passworld"
                 android:textColor="#7A7575" />
         </LinearLayout>
 

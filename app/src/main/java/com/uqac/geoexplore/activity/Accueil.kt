@@ -23,6 +23,12 @@ class Accueil : AppCompatActivity() {
 
     }
 
+    fun Profil(view: View) {
+        val intent = Intent(this, Profile::class.java)
+        startActivity(intent)
+
+    }
+
 
 
 
