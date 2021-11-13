@@ -68,7 +68,8 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat"
             android:text="Course name"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/courseName"
@@ -87,24 +88,43 @@
             android:id="@+id/textView16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/description"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/courseDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:hint="Enter a description of the course you're creating!"
             android:textColor="#FFFFFF"
             android:textColorHint="#998FA2"/>
+
+        <TextView
+            android:id="@+id/textViewDifficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/difficulty"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
+
+        <Spinner
+            android:id="@+id/courseDifficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:textColor="#FFFFFF"
+            android:entries="@array/difficulties"/>
 
         <TextView
             android:id="@+id/textView17"
@@ -114,7 +134,8 @@
             android:text="@string/location"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/courseLocation"
@@ -132,7 +153,8 @@
             android:text="@string/interests"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:id="@+id/courseInterests"
@@ -141,7 +163,7 @@
             android:ems="10"
             android:inputType="text"
             android:textColor="#FFFFFF"
-            android:hint="List some interest points that are visited through your course"
+            android:hint="Interest points visited through your course"
             android:textColorHint="#998FA2"/>
 
         <Button
@@ -155,6 +177,7 @@
             android:text="@string/create"
             android:textColor="#FFFFFF"
             app:backgroundTint="#25BF72"
-            android:onClick="addCourseInDatabase"/>
+            android:onClick="addCourseInDatabase"
+            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

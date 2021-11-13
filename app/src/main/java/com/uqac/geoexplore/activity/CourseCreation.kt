@@ -1,7 +1,9 @@
 package com.uqac.geoexplore.activity
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +19,9 @@ class CourseCreation : AppCompatActivity() {
     private lateinit var courseDescription: EditText
     private lateinit var courseLocation: EditText
     private lateinit var courseInterests: EditText
+    private lateinit var difficultySpinner: Spinner
+
+    private var difficulty: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,22 +31,58 @@ class CourseCreation : AppCompatActivity() {
         courseDescription = findViewById(R.id.courseDescription)
         courseLocation = findViewById(R.id.courseLocation)
         courseInterests = findViewById(R.id.courseInterests)
+        difficultySpinner = findViewById(R.id.courseDifficulty)
 
         val location: LatLng = intent.extras?.get("location") as LatLng
         courseLocation.setText(location.latitude.toString() + ", " + location.longitude.toString())
+
+
+
+        var adapter = ArrayAdapter.createFromResource(this, R.array.difficulties, R.layout.difficulty_spinner_selected_item)
+        adapter.setDropDownViewResource(R.layout.difficulty_spinner_item)
+        difficultySpinner.adapter = adapter
+
+        difficultySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                difficulty = position
+            }
+
+        }
+
+
     }
 
     fun addCourseInDatabase(view: android.view.View) {
-        var courseDetails = CourseMiscDetails()
-        courseDetails.publicationDate = Date.from(Instant.now())
-
-        val f_auth = FirebaseAuth.getInstance()
-        if (f_auth.currentUser != null) {
-            courseDetails.creator = User()
-            //TODO: Get current User object
+        if (difficulty == 0) {
+            Toast.makeText(applicationContext, "Please select a difficulty", Toast.LENGTH_LONG).show()
         }
+        else {
+            val courseDetails = CourseMiscDetails()
+            courseDetails.publicationDate = Date.from(Instant.now())
+            courseDetails.description = courseDescription.text.toString()
+            courseDetails.difficulty = difficulty
 
-        var newCourse = Course(courseName.text.toString(), courseLocation.text.toString(), courseDetails)
-        println("Course crée : " + newCourse.name)
+            val f_auth = FirebaseAuth.getInstance()
+            if (f_auth.currentUser != null) {
+                courseDetails.creator = User()
+                //TODO: Get current User object
+            }
+
+            if (courseName.text.toString() == "") {
+                Toast.makeText(applicationContext, "Please chose a name for the course", Toast.LENGTH_LONG).show()
+            }
+            else {
+                val newCourse = Course(courseName.text.toString(), courseLocation.text.toString(), courseDetails)
+                println("Course créée : " + newCourse.name)
+
+                Toast.makeText(applicationContext, "Course successfully created", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, Accueil::class.java))
+            }
+
+
+        }
     }
 }

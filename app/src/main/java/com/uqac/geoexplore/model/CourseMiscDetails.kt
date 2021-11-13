@@ -5,7 +5,7 @@ import java.util.*
 class CourseMiscDetails {
     lateinit var creator : User
     lateinit var publicationDate : Date
-    lateinit var rating : Integer
-    lateinit var difficulty : Integer
+    var rating : Int = 0
+    var difficulty : Int = 0
     lateinit var description : String
 }

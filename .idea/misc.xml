@@ -23,10 +23,15 @@
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/mipmap-anydpi-v26/ic_logo_accueil.xml" value="0.14635416666666667" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/mipmap-anydpi-v26/ic_logo_accueil_round.xml" value="0.14635416666666667" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore2/app/src/main/res/layout/activity_course_creation_map.xml" value="0.1296875" />
+        <entry key="..\:/Users/romai/AndroidStudioProjects/GeoExplore/app/src/main/res/layout/activity_accueil.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/romai/AndroidStudioProjects/GeoExplore/app/src/main/res/layout/activity_course_creation_map.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/romai/AndroidStudioProjects/GeoExplore/app/src/main/res/layout/activity_log_in.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/romai/AndroidStudioProjects/GeoExplore/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/romai/AndroidStudioProjects/GeoExplore/app/src/main/res/layout/activity_recherche.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/romai/AndroidStudioProjects/GeoExplore/app/src/main/res/layout/create_course.xml" value="0.1" />
+        <entry key="..\:/Users/romai/AndroidStudioProjects/GeoExplore/app/src/main/res/layout/detail_course.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/romai/AndroidStudioProjects/GeoExplore/app/src/main/res/layout/difficulty_spinner_item.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/romai/AndroidStudioProjects/GeoExplore/app/src/main/res/layout/difficulty_spinner_selected_item.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>
