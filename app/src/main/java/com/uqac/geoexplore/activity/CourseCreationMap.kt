@@ -176,7 +176,9 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     }
 
     fun registerCourse(view: View) {
-        val newIntent = Intent()
+        startActivity(Intent(applicationContext, CourseCreation::class.java).putExtra("location",
+            circle?.center
+        ))
     }
 
 

@@ -1,6 +1,10 @@
 package com.uqac.geoexplore.model
 
-class Course (var id: String, var name: String,var miscInfo:CourseMiscDetails ,var location: String) {
+
+import com.google.android.gms.maps.model.LatLng
+
+class Course (var name: String,var miscInfo:CourseMiscDetails ,var location: LatLng) {
+
 
     /* private lateinit var id : String
     private lateinit var name : String
