@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+/*
         val db = Firebase.firestore
         val userdb = Firebase.auth.currentUser
 
@@ -43,14 +43,14 @@ class MainActivity : AppCompatActivity() {
 
         // Add a new document with a generated ID
         db.collection("Course")
-            .add(CourseMiscDetailsTest)
+            .add(parcoursTest)
             .addOnSuccessListener { documentReference ->
                 Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
-
+*/
 
     }
 
