@@ -1,11 +1,14 @@
 package com.uqac.geoexplore.model
 
-import java.util.*
+import android.text.format.DateFormat
 
-class CourseMiscDetails {
-    lateinit var creator : User
-    lateinit var publicationDate : Date
-    var rating : Int = 0
-    var difficulty : Int = 0
-    lateinit var description : String
+class CourseMiscDetails(var creator: User, var publicationDate: String, var rating: Float, var difficulty: Int, var description: String) {
+    /*
+    private lateinit var creator : User
+    private lateinit var publicationDate : DateFormat
+    private lateinit var rating : Integer
+    private lateinit var difficulty : Integer
+    private lateinit var description : String
+*/
+
 }

@@ -1,12 +1,17 @@
 package com.uqac.geoexplore.activity
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
 import com.uqac.geoexplore.model.CourseMiscDetails
@@ -22,6 +27,7 @@ class CourseCreation : AppCompatActivity() {
     private lateinit var difficultySpinner: Spinner
 
     private var difficulty: Int = 0
+    private lateinit var locationLatLng: LatLng
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +39,8 @@ class CourseCreation : AppCompatActivity() {
         courseInterests = findViewById(R.id.courseInterests)
         difficultySpinner = findViewById(R.id.courseDifficulty)
 
-        val location: LatLng = intent.extras?.get("location") as LatLng
-        courseLocation.setText(location.latitude.toString() + ", " + location.longitude.toString())
+        locationLatLng = intent.extras?.get("location") as LatLng
+        courseLocation.setText(locationLatLng.latitude.toString() + ", " + locationLatLng.longitude.toString())
 
 
 
@@ -60,22 +66,30 @@ class CourseCreation : AppCompatActivity() {
             Toast.makeText(applicationContext, "Please select a difficulty", Toast.LENGTH_LONG).show()
         }
         else {
-            val courseDetails = CourseMiscDetails()
-            courseDetails.publicationDate = Date.from(Instant.now())
-            courseDetails.description = courseDescription.text.toString()
-            courseDetails.difficulty = difficulty
 
-            val f_auth = FirebaseAuth.getInstance()
-            if (f_auth.currentUser != null) {
-                courseDetails.creator = User()
-                //TODO: Get current User object
-            }
+            val db = Firebase.firestore
+            val userdb = Firebase.auth.currentUser
+
+            val currentUser = User(userdb?.uid.toString(), userdb?.displayName.toString(), userdb?.email.toString())
+
+
+            val courseDetails = CourseMiscDetails(currentUser, Date.from(Instant.now()).toString(), 0F, difficulty, courseDescription.text.toString() )
+
 
             if (courseName.text.toString() == "") {
                 Toast.makeText(applicationContext, "Please chose a name for the course", Toast.LENGTH_LONG).show()
             }
             else {
-                val newCourse = Course(courseName.text.toString(), courseLocation.text.toString(), courseDetails)
+                val newCourse = Course(courseName.text.toString(), courseDetails, locationLatLng)
+                db.collection("Course")
+                    .add(newCourse)
+                    .addOnSuccessListener { documentReference ->
+                        Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(TAG, "Error adding document", e)
+                    }
+
                 println("Course créée : " + newCourse.name)
 
                 Toast.makeText(applicationContext, "Course successfully created", Toast.LENGTH_LONG).show()
