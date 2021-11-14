@@ -3,13 +3,11 @@
     package="com.uqac.geoexplore">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--Permission for camera-->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!--Permission to vibrate-->
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Permission for camera -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Permission to vibrate -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,8 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoExplorer">
         <activity
-        android:name=".activity.Profile"
-        android:exported="true" />
+            android:name=".activity.DisplayCoursesMap"
+            android:exported="true" />
+        <activity
+            android:name=".activity.Profile"
+            android:exported="true" />
         <activity
             android:name=".activity.Settings"
             android:exported="true" />
@@ -37,7 +38,7 @@
             android:exported="true" />
         <activity
             android:name=".activity.QrCodeActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activity.ReadQrCode"
             android:exported="true" />
@@ -51,9 +52,14 @@
             </intent-filter>
         </activity>
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_maps_key"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
-        <activity android:name=".activity.CourseCreationMap" android:label="@string/title_activity_course_creation_map" android:exported="true"/>
+        <activity
+            android:name=".activity.CourseCreationMap"
+            android:exported="true"
+            android:label="@string/title_activity_course_creation_map" />
     </application>
 
 </manifest>
