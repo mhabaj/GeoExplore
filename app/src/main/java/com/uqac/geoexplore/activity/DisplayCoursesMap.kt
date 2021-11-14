@@ -1,5 +1,6 @@
 package com.uqac.geoexplore.activity
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,6 +10,7 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
@@ -26,9 +28,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.CircleOptions
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
 import com.uqac.geoexplore.model.CourseMiscDetails
+import org.json.JSONObject
 import java.io.IOException
 import java.lang.IndexOutOfBoundsException
 
@@ -55,9 +61,9 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         setContentView(R.layout.activity_display_courses_map)
 
         // TODO: pass on a list of courses, or get them directly from database
-        //courses = intent.extras?.get("courses") as List<Course>
 
-        courses = ArrayList()
+
+        /*courses = ArrayList()
 
         var course1 = Course()
         course1.location = LatLng(48.428130, -71.059318)
@@ -76,7 +82,7 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         course3.name = "CourseNo3"
         course3.miscInfo = CourseMiscDetails()
         courses.add(course3)
-
+*/
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -119,7 +125,27 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         setUpMap()
 
         circles = ArrayList()
-        displayCoursesOnMap(courses)
+        val db = Firebase.firestore
+
+        db.collection("Course")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    if (document?.data?.get("location") != null) {
+                        val locationMap = document.data["location"] as Map<*, *>
+                        addCircle(LatLng(locationMap["latitude"] as Double,
+                            locationMap["longitude"] as Double
+                        ))
+                        /*val firebaseLocation = document.data["location"] as HashMap<*, *>
+                        addCircle(LatLng(firebaseLocation["latitude"]!! as Double,
+                            firebaseLocation["longitude"]!! as Double
+                        ))*/
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents: ", exception)
+            }
     }
 
     private fun setUpMap() {
