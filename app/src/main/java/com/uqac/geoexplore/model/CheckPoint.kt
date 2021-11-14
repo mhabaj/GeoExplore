@@ -1,7 +1,8 @@
 package com.uqac.geoexplore.model
 
-class CheckPoint {
-    private lateinit var qrcode : String
-    private lateinit var textContent : String
+class CheckPoint(var id: String, var textcontent: String) {
 
+    override fun toString(): String {
+        return "CheckPoint(id='$id', textcontent='$textcontent')"
+    }
 }

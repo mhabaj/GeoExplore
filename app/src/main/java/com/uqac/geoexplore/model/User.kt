@@ -1,10 +1,11 @@
 package com.uqac.geoexplore.model
 
-class User {
-    private lateinit  var id : String
-    private lateinit  var firstname : String
-    private lateinit  var lastname : String
-    private lateinit  var email : String
-    private lateinit  var password : String
-    private lateinit  var qrcode : String
+class User(var id: String, var shownName: String, var email: String ) {
+
+    override fun toString(): String {
+        return "User(id='$id', shownName='$shownName', email='$email')"
+    }
+
+
 }
+
