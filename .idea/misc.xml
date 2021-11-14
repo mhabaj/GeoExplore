@@ -26,10 +26,12 @@
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/activity_accueil.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/activity_course_creation_map.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/activity_enregistrer.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/activity_profile.xml" value="0.2" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/activity_log_in.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/activity_profile.xml" value="0.4" />
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/activity_recherche.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/activity_settings2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/anwal/OneDrive/Documentos/GitHub/GeoExplore/app/src/main/res/layout/read_qrcode.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

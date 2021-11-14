@@ -1,12 +1,16 @@
 package com.uqac.geoexplore.activity
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.uqac.geoexplore.R
 
 
@@ -40,13 +44,17 @@ class Enregistrer : AppCompatActivity() {
             finish()
         }*/
 
-
         //Verification
         var email = m_email?.text.toString().trim()
         var password = m_password?.text.toString().trim()
+        var name = m_name?.text.toString().trim()
 
         if(TextUtils.isEmpty(email)){
             m_email?.setError("Email is Required.")
+            return
+        }
+        if(TextUtils.isEmpty(name)){
+            m_name?.setError("Name is Required.")
             return
         }
         if(TextUtils.isEmpty(password)){
@@ -64,7 +72,7 @@ class Enregistrer : AppCompatActivity() {
         // Enregistrer l'utilisateur dans la base de données
 
         f_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
-            if(taskId.isSuccessful) {
+            if(taskId.isSuccessful && !(TextUtils.isEmpty(name))) {
                 m_Resultat?.setText("User Created ! ")
                 startActivity(Intent(applicationContext, Accueil::class.java))
             }
@@ -73,6 +81,18 @@ class Enregistrer : AppCompatActivity() {
                 progress_bar?.setVisibility(View.INVISIBLE)
             }
         }
+
+        val user= f_auth.currentUser
+        val profileUpdates = userProfileChangeRequest {
+            displayName = name
+        }
+
+        user!!.updateProfile(profileUpdates)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "User profile updated.")
+                }
+            }
     }
 
 

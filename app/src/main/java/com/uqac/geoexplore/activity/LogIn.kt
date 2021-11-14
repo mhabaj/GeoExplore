@@ -58,6 +58,7 @@ class LogIn : AppCompatActivity() {
             m_email?.setError("Email is Required.")
             return
         }
+
         if(TextUtils.isEmpty(password)){
             m_password?.setError("Password is Required.")
             return
