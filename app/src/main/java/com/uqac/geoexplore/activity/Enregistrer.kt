@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
-
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -71,7 +70,6 @@ class Enregistrer : AppCompatActivity() {
         f_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
             if(taskId.isSuccessful) {
                 m_Resultat?.setText("User Created ! ")
-                startActivity(Intent(applicationContext, Accueil::class.java))
 
                 val dbUser = Firebase.auth.currentUser
 

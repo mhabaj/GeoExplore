@@ -4,7 +4,7 @@ package com.uqac.geoexplore.model
 
 import com.google.android.gms.maps.model.LatLng
 
-class Course (var name: String,var miscInfo:CourseMiscDetails ,var location: LatLng) {
+data class Course (var name: String,var miscInfo:CourseMiscDetails ,var location: LatLng) {
 
 
     /* private lateinit var id : String
