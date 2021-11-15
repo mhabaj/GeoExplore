@@ -58,8 +58,6 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_courses_map)
 
-        // TODO: pass on a list of courses, or get them directly from database
-
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -80,12 +78,6 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         })
     }
 
-    private fun displayCoursesOnMap(courses: List<Course>) {
-        for (course: Course in courses) {
-            addCircle(course.location)
-        }
-    }
-
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -102,21 +94,15 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         setUpMap()
 
         circles = ArrayList()
-        val db = Firebase.firestore
+        courses = HashMap()
 
+        val db = Firebase.firestore
         db.collection("Course")
             .get()
             .addOnSuccessListener { result ->
                 for (dbCourse in result) {
                     val course = dbCourse.toObject<Course>()
                     courses[addCircle(course.location)] = course
-//                    if (dbCourse?.data?.get("location") != null) {
-//                        val locationMap = dbCourse.data["location"] as Map<*, *>
-//
-//                        addCircle(LatLng(locationMap["latitude"] as Double,
-//                            locationMap["longitude"] as Double
-//                        ))
-//                    }
                 }
             }
             .addOnFailureListener { exception ->
@@ -151,6 +137,7 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
                 .strokeWidth(3.0F)
                 .strokeColor(Color.argb(99, 51, 153, 51))
                 .fillColor(Color.argb(50, 51, 153, 51))
+                .clickable(true)
         )
     }
 
@@ -206,7 +193,7 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     override fun onCircleClick(circle: Circle) {
         addMarker(circle.center)
         findViewById<Button>(R.id.confirm_button).isEnabled = true
-//        findViewById<Button>(R.id.confirm_button).setText("Course delected: " + courses[circle]?.name)
+        findViewById<Button>(R.id.confirm_button).setText("Course selected: " + courses[circle]?.name)
     }
 
 

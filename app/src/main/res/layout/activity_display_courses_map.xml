@@ -35,6 +35,6 @@
         android:layout_alignBottom="@id/map"
 
         android:backgroundTint="#339933"
-        android:onClick="registerCourse"
+        android:onClick="selectCourse"
         />
 </RelativeLayout>
