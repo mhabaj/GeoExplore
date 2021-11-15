@@ -4,9 +4,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
+<<<<<<< Updated upstream
+=======
+
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+>>>>>>> Stashed changes
 import com.uqac.geoexplore.R
 
 
@@ -34,6 +44,7 @@ class Enregistrer : AppCompatActivity() {
 
     fun Continue(view: View?) {
         var f_auth = FirebaseAuth.getInstance()
+<<<<<<< Updated upstream
 /*
         if(f_auth.currentUser != null) {
             startActivity(Intent(applicationContext, MainActivity::class.java))
@@ -41,6 +52,11 @@ class Enregistrer : AppCompatActivity() {
         }*/
 
 
+=======
+        val db = Firebase.firestore
+
+        
+>>>>>>> Stashed changes
         //Verification
         var email = m_email?.text.toString().trim()
         var password = m_password?.text.toString().trim()
@@ -61,12 +77,38 @@ class Enregistrer : AppCompatActivity() {
         progress_bar?.setVisibility(View.VISIBLE)
         m_Resultat?.setVisibility(View.VISIBLE)
 
-        // Enregistrer l'utilisateur dans la base de données
+        // Enregistrer l'utilisateur dans la base de donnÃ©es
 
         f_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
             if(taskId.isSuccessful) {
                 m_Resultat?.setText("User Created ! ")
+<<<<<<< Updated upstream
                 startActivity(Intent(applicationContext, Accueil::class.java))
+=======
+
+                val dbUser = Firebase.auth.currentUser
+
+                val profileUpdates = userProfileChangeRequest {
+                    displayName = m_name?.text.toString()
+                }
+                dbUser!!.updateProfile(profileUpdates)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val user = User(dbUser.uid.toString(),m_name?.text.toString(), dbUser.email.toString())
+                            db.collection("User")
+                                .document(Firebase.auth.currentUser?.uid.toString()).set(user)
+                                .addOnSuccessListener {
+                                    startActivity(Intent(applicationContext, Accueil::class.java))
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w(TAG, "Error creating new User", e)
+                                }
+                        }
+                    }
+
+
+
+>>>>>>> Stashed changes
             }
             else {
                 m_Resultat?.setText("Error !!"+ taskId.exception)
