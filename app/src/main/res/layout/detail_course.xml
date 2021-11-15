@@ -46,10 +46,8 @@
                 android:id="@+id/editTextDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:ems="10"
-                android:gravity="top"
+                android:gravity="top|center"
                 android:hint="10/11/2021"
                 android:inputType="date"
                 android:textColor="#000000"
@@ -61,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:ems="10"
-                android:gravity="bottom|start"
+                android:gravity="top|center"
                 android:hint="12:00"
                 android:inputType="time"
                 android:textColor="#000000"
@@ -84,7 +82,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/courseNameView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -122,11 +120,10 @@
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/courseLocationView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/location"
                     android:textColor="#FFFFFF"
@@ -148,11 +145,10 @@
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/courseInterestView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/interests"
                     android:textColor="#FFFFFF"
@@ -161,7 +157,7 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/descriptionView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

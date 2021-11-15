@@ -2,6 +2,7 @@ package com.uqac.geoexplore.activity
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Address
@@ -45,6 +46,8 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
 
     private lateinit var courses: HashMap<Circle, Course>
     private lateinit var circles : ArrayList<Circle>
+
+    private lateinit var selectedCourse: Course
 
     private var marker: Marker? = null
 
@@ -194,9 +197,13 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         addMarker(circle.center)
         findViewById<Button>(R.id.confirm_button).isEnabled = true
         findViewById<Button>(R.id.confirm_button).setText("Course selected: " + courses[circle]?.name)
+        selectedCourse = courses[circle]!!
     }
 
-    fun selectCourse(view: android.view.View) {}
+    fun selectCourse(view: android.view.View) {
+        startActivity(Intent(this, CourseDetails::class.java)
+            .putExtra("courseName", selectedCourse.name))
+    }
 
 
 }
