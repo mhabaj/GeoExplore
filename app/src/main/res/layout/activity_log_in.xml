@@ -102,6 +102,7 @@
             android:text="@string/forgot"
             android:onClick="forgotPassword"
             android:textColor="#25BF72"
+            android:onClick="forgotPassword"
             app:backgroundTint="@color/white" />
 
         <ProgressBar

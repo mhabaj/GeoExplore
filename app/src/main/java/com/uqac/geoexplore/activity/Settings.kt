@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.uqac.geoexplore.MainActivity
 import com.uqac.geoexplore.R
 
-class Settings2 : AppCompatActivity() {
+class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings2)

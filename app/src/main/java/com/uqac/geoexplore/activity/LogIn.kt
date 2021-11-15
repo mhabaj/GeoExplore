@@ -92,8 +92,6 @@ class LogIn : AppCompatActivity() {
         var dialog = ForgotPasswordDialogFragement()
         dialog.show(supportFragmentManager, "customDialog")
 
-
-
     }
 
 

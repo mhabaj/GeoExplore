@@ -16,6 +16,7 @@ class Profile() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+
         val user = FirebaseAuth.getInstance().currentUser
         var m_name = findViewById<TextView>(R.id.textname)
 
@@ -25,7 +26,7 @@ class Profile() : AppCompatActivity() {
 
 
     fun settings(view: View?) {
-        val intent = Intent(this, Settings2::class.java)
+        val intent = Intent(this, Settings::class.java)
         startActivity(intent)
 
     }

@@ -93,7 +93,6 @@ class Enregistrer : AppCompatActivity() {
                         }
                     }
 
-
             }
             else {
                 m_Resultat?.setText("Error !!"+ taskId.exception)
