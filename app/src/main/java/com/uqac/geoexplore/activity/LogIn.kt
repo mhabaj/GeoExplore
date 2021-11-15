@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
+import com.uqac.geoexplore.ForgotPasswordDialogFragement
 import com.uqac.geoexplore.R
 
 class LogIn : AppCompatActivity() {
@@ -86,5 +87,12 @@ class LogIn : AppCompatActivity() {
 
     }
 
+<<<<<<< Updated upstream
+=======
+    fun forgotPassword(view: View?){
+        var dialog = ForgotPasswordDialogFragement()
+    }
+
+>>>>>>> Stashed changes
 
 }
