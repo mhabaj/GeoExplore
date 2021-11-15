@@ -16,9 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoExplorer">
         <activity
-            android:name=".activity.CourseCreation"
+            android:name=".activity.CourseDetails"
             android:exported="true" />
         <activity
+            android:name=".activity.DisplayCoursesMap"
+            android:exported="true" />
+		<activity
+            android:name=".activity.CourseCreation"
+            android:exported="true" />
+		<activity
             android:name=".activity.Profile"
             android:exported="true" />
         <activity
