@@ -8,16 +8,14 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
-<<<<<<< Updated upstream
-=======
 
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
->>>>>>> Stashed changes
 import com.uqac.geoexplore.R
+import com.uqac.geoexplore.model.User
 
 
 class Enregistrer : AppCompatActivity() {
@@ -44,19 +42,10 @@ class Enregistrer : AppCompatActivity() {
 
     fun Continue(view: View?) {
         var f_auth = FirebaseAuth.getInstance()
-<<<<<<< Updated upstream
-/*
-        if(f_auth.currentUser != null) {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
-            finish()
-        }*/
 
-
-=======
         val db = Firebase.firestore
 
         
->>>>>>> Stashed changes
         //Verification
         var email = m_email?.text.toString().trim()
         var password = m_password?.text.toString().trim()
@@ -82,9 +71,7 @@ class Enregistrer : AppCompatActivity() {
         f_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
             if(taskId.isSuccessful) {
                 m_Resultat?.setText("User Created ! ")
-<<<<<<< Updated upstream
                 startActivity(Intent(applicationContext, Accueil::class.java))
-=======
 
                 val dbUser = Firebase.auth.currentUser
 
@@ -106,9 +93,6 @@ class Enregistrer : AppCompatActivity() {
                         }
                     }
 
-
-
->>>>>>> Stashed changes
             }
             else {
                 m_Resultat?.setText("Error !!"+ taskId.exception)

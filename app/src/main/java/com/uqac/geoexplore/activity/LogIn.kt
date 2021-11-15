@@ -56,43 +56,43 @@ class LogIn : AppCompatActivity() {
         var password = m_password?.text.toString().trim()
 
         if(TextUtils.isEmpty(email)){
-            m_email?.setError("Email is Required.")
+            m_email?.error = "Email is Required."
             return
         }
         if(TextUtils.isEmpty(password)){
-            m_password?.setError("Password is Required.")
+            m_password?.error = "Password is Required."
             return
         }
         if(m_password?.length()!! <6 ){
-            m_password?.setError("Password must have at least 6 characters.")
+            m_password?.error = "Password must have at least 6 characters."
             return
         }
 
-        progress_bar?.setVisibility(View.VISIBLE)
-        m_Resultat?.setVisibility(View.VISIBLE)
+        progress_bar?.visibility = View.VISIBLE
+        m_Resultat?.visibility = View.VISIBLE
 
         // Enregistrer l'utilisateur dans la base de données
 
         f_auth.signInWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
             if(taskId.isSuccessful) {
-                m_Resultat?.setText("Logged in Succesfully ! ")
+                m_Resultat?.text = "Logged in Succesfully ! "
                 startActivity(Intent(applicationContext, Accueil::class.java))
             }
             else {
-                m_Resultat?.setText("Error !!"+ taskId.exception)
-                progress_bar?.setVisibility(View.INVISIBLE)
+                m_Resultat?.text = "Error !!"+ taskId.exception
+                progress_bar?.visibility = View.INVISIBLE
             }
         }
 
 
     }
 
-<<<<<<< Updated upstream
-=======
+
     fun forgotPassword(view: View?){
         var dialog = ForgotPasswordDialogFragement()
+        dialog.show(supportFragmentManager, "customDialog")
+
     }
 
->>>>>>> Stashed changes
 
 }
