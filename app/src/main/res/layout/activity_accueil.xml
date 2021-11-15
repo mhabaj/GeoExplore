@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/mapButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -28,7 +28,8 @@
             app:icon="@drawable/ic_compas"
             app:iconGravity="textTop"
             app:iconSize="@android:dimen/app_icon_size"
-            app:iconTint="#FFFFFF" />
+            app:iconTint="#FFFFFF"
+            android:onClick="displayMap"/>
 
         <TableLayout
             android:layout_width="wrap_content"

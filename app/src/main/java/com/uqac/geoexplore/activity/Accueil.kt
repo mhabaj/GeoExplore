@@ -23,7 +23,9 @@ class Accueil : AppCompatActivity() {
 
     }
 
-
+    fun displayMap(view: android.view.View) {
+        startActivity(Intent(this, DisplayCoursesMap::class.java))
+    }
 
 
 }

@@ -196,5 +196,7 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         findViewById<Button>(R.id.confirm_button).setText("Course selected: " + courses[circle]?.name)
     }
 
+    fun selectCourse(view: android.view.View) {}
+
 
 }
