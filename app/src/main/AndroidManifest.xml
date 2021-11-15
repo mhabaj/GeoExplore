@@ -17,40 +17,52 @@
         android:theme="@style/Theme.GeoExplorer">
         <activity
             android:name=".activity.CourseDetails"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".activity.DisplayCoursesMap"
-            android:exported="true" />
-		<activity
+            android:exported="true"/>
+
+        <activity
             android:name=".activity.CourseCreation"
-            android:exported="true" />
-		<activity
+            android:exported="true"/>
+
+        <activity
             android:name=".activity.Profile"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".activity.Settings"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".activity.Accueil"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".activity.Recherche"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".activity.LogIn"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".activity.Enregistrer"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".activity.QrCodeActivity"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".activity.ReadQrCode"
-            android:exported="true" />
+            android:exported="true"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
