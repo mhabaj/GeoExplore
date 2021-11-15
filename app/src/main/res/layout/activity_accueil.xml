@@ -72,6 +72,7 @@
                     app:icon="@drawable/ic_user_circle_regular"
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
+                    android:onClick="profile"
                     app:iconTint="#1a8a52"
                     />
             </TableRow>
@@ -133,7 +134,7 @@
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
                     app:iconTint="#515151"
-                    android:onClick="Settings"/>
+                    android:onClick="settings"/>
             </TableRow>
 
             <TableRow

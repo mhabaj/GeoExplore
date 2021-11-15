@@ -22,7 +22,7 @@
             android:name=".activity.Profile"
             android:exported="true" />
         <activity
-            android:name=".activity.Settings"
+            android:name=".activity.Settings2"
             android:exported="true" />
         <activity
             android:name=".activity.Accueil"
@@ -47,6 +47,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
