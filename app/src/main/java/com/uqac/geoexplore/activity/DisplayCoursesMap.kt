@@ -2,7 +2,6 @@ package com.uqac.geoexplore.activity
 
 import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Address
@@ -28,13 +27,12 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.CircleOptions
-import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
-import com.uqac.geoexplore.model.CourseMiscDetails
-import org.json.JSONObject
 import java.io.IOException
 import java.lang.IndexOutOfBoundsException
 
@@ -45,7 +43,7 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var searchView: SearchView
 
-    private lateinit var courses: ArrayList<Course>
+    private lateinit var courses: HashMap<Circle, Course>
     private lateinit var circles : ArrayList<Circle>
 
     private var marker: Marker? = null
@@ -62,27 +60,6 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
 
         // TODO: pass on a list of courses, or get them directly from database
 
-
-        /*courses = ArrayList()
-
-        var course1 = Course()
-        course1.location = LatLng(48.428130, -71.059318)
-        course1.name = "CourseNo1"
-        course1.miscInfo = CourseMiscDetails()
-        courses.add(course1)
-
-        var course2 = Course()
-        course2.location = LatLng(48.417962, -71.070337)
-        course2.name = "CourseNo2"
-        course2.miscInfo = CourseMiscDetails()
-        courses.add(course2)
-
-        var course3 = Course()
-        course3.location = LatLng(48.398170, -71.045459)
-        course3.name = "CourseNo3"
-        course3.miscInfo = CourseMiscDetails()
-        courses.add(course3)
-*/
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -130,17 +107,16 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         db.collection("Course")
             .get()
             .addOnSuccessListener { result ->
-                for (document in result) {
-                    if (document?.data?.get("location") != null) {
-                        val locationMap = document.data["location"] as Map<*, *>
-                        addCircle(LatLng(locationMap["latitude"] as Double,
-                            locationMap["longitude"] as Double
-                        ))
-                        /*val firebaseLocation = document.data["location"] as HashMap<*, *>
-                        addCircle(LatLng(firebaseLocation["latitude"]!! as Double,
-                            firebaseLocation["longitude"]!! as Double
-                        ))*/
-                    }
+                for (dbCourse in result) {
+                    val course = dbCourse.toObject<Course>()
+                    courses[addCircle(course.location)] = course
+//                    if (dbCourse?.data?.get("location") != null) {
+//                        val locationMap = dbCourse.data["location"] as Map<*, *>
+//
+//                        addCircle(LatLng(locationMap["latitude"] as Double,
+//                            locationMap["longitude"] as Double
+//                        ))
+//                    }
                 }
             }
             .addOnFailureListener { exception ->
@@ -168,14 +144,14 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         }
     }
 
-    private fun addCircle(location: LatLng): Circle {
-        var circle = mMap.addCircle(CircleOptions().center(location)
-            .radius(500.0)
-            .strokeWidth(3.0F)
-            .strokeColor(Color.argb(99, 51, 153, 51))
-            .fillColor(Color.argb(50, 51, 153, 51)))
-
-        return circle
+    private fun addCircle(location: GeoPoint): Circle {
+        return mMap.addCircle(
+            CircleOptions().center(LatLng(location.latitude, location.longitude))
+                .radius(500.0)
+                .strokeWidth(3.0F)
+                .strokeColor(Color.argb(99, 51, 153, 51))
+                .fillColor(Color.argb(50, 51, 153, 51))
+        )
     }
 
     private fun addMarker(location: LatLng) {
@@ -230,6 +206,7 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     override fun onCircleClick(circle: Circle) {
         addMarker(circle.center)
         findViewById<Button>(R.id.confirm_button).isEnabled = true
+//        findViewById<Button>(R.id.confirm_button).setText("Course delected: " + courses[circle]?.name)
     }
 
 
