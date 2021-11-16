@@ -1,6 +1,6 @@
 package com.uqac.geoexplore.activity
 
-import QrCodeActivity
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
