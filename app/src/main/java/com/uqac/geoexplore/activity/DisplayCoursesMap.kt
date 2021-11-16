@@ -165,8 +165,6 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
                 val address: Address = addressList!![0]
                 val latLng = LatLng(address.latitude, address.longitude)
 
-                marker?.remove()
-                marker = mMap.addMarker(MarkerOptions().position(latLng).title(location))
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f))
 
                 Toast.makeText(
