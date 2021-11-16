@@ -32,8 +32,10 @@ class Accueil : AppCompatActivity() {
     fun profile(view: View?) {
         val intent = Intent(this, Profile::class.java)
         startActivity(intent)
+    }
 
-
-}
+    fun createCourse(view: android.view.View) {
+        startActivity(Intent(this, CourseCreationMap::class.java))
+    }
 
 }
