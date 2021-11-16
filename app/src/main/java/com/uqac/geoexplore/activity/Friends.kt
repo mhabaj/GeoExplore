@@ -29,7 +29,6 @@ class Friends : AppCompatActivity() {
     private var gridView: GridView? = null
     private var button: Button? = null
     var list:List<String>? = null
-    var listamis:List<String>? = null
     var user: User? = null
     override  fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +37,14 @@ class Friends : AppCompatActivity() {
         gridView = findViewById(R.id.gridView)
         val db = Firebase.firestore
         val dbUser = Firebase.auth.currentUser
-
+        list = emptyList()
         // intent
         val intent = intent
         val message = intent!!.getStringExtra("Id")
         MainScope().launch {
             user = Functions.getUserFromUid(dbUser!!.uid)
-            if (message != null) user!!.friends = user!!.friends!!.plusElement(message)
-            //Functions.getUserFromUid(message)?.shownName!!
+            if (message != null) user!!.friends = user!!.friends!!.plus(message)
+
             val profileUpdates = userProfileChangeRequest {
 
             }
@@ -66,20 +65,22 @@ class Friends : AppCompatActivity() {
             Log.d("App", user.toString())
             user = Functions.getUserFromUid(dbUser!!.uid)
 
-            if (user != null) list = user!!.friends!!
-                Log.d("App", "ajout ami")
-                val adapter: ArrayAdapter<String> = ArrayAdapter<String>(this@Friends ,
-                    android.R.layout.simple_list_item_1, list!!
-                )
+            for(i in user?.friends!!) {
+                list = list?.plus(Functions.getUserFromUid(i!!)?.shownName!!)
+            }
+            
+            val adapter: ArrayAdapter<String> = ArrayAdapter<String>(this@Friends ,
+                android.R.layout.simple_list_item_1, list!!
+            )
 
-                gridView!!.setAdapter(adapter)
+            gridView!!.setAdapter(adapter)
 
-                gridView!!.setOnItemClickListener(OnItemClickListener { parent, v, position, id ->
-                    Toast.makeText(
-                        applicationContext,
-                        (v as TextView).text, Toast.LENGTH_SHORT
-                    ).show()
-                })
+            gridView!!.setOnItemClickListener(OnItemClickListener { parent, v, position, id ->
+                Toast.makeText(
+                    applicationContext,
+                    (v as TextView).text, Toast.LENGTH_SHORT
+                ).show()
+            })
 
         }
 
