@@ -87,6 +87,7 @@ class LogIn : AppCompatActivity() {
 
     }
 
+    
 
     fun forgotPassword(view: View?){
         var dialog = ForgotPasswordDialogFragement()
