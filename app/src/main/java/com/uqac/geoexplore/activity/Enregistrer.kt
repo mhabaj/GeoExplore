@@ -4,10 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.uqac.geoexplore.R
+import com.uqac.geoexplore.model.User
 
 
 class Enregistrer : AppCompatActivity() {
@@ -34,11 +40,8 @@ class Enregistrer : AppCompatActivity() {
 
     fun Continue(view: View?) {
         var f_auth = FirebaseAuth.getInstance()
-/*
-        if(f_auth.currentUser != null) {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
-            finish()
-        }*/
+        val db = Firebase.firestore
+
 
 
         //Verification
@@ -61,12 +64,34 @@ class Enregistrer : AppCompatActivity() {
         progress_bar?.setVisibility(View.VISIBLE)
         m_Resultat?.setVisibility(View.VISIBLE)
 
-        // Enregistrer l'utilisateur dans la base de données
+        // Enregistrer l'utilisateur dans la base de donnÃ©es
 
         f_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
             if(taskId.isSuccessful) {
                 m_Resultat?.setText("User Created ! ")
-                startActivity(Intent(applicationContext, Accueil::class.java))
+
+                val dbUser = Firebase.auth.currentUser
+
+                val profileUpdates = userProfileChangeRequest {
+                    displayName = m_name?.text.toString()
+                }
+                dbUser!!.updateProfile(profileUpdates)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val user = User(dbUser.uid,m_name?.text.toString(), dbUser.email.toString(), emptyList())
+                            db.collection("User")
+                                .document(Firebase.auth.currentUser?.uid.toString()).set(user)
+                                .addOnSuccessListener {
+                                    startActivity(Intent(applicationContext, Accueil::class.java))
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w(TAG, "Error creating new User", e)
+                                }
+                        }
+                    }
+
+
+
             }
             else {
                 m_Resultat?.setText("Error !!"+ taskId.exception)

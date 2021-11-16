@@ -18,26 +18,14 @@
         android:layout_marginTop="50dp"
         android:contentDescription="@string/qr_code" />
 
-    <!--Edit text to enter text
-            for creating a QR code-->
-    <EditText
-        android:id="@+id/idEdt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idIVQrcode"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
-        android:autofillHints=""
-        android:hint="@string/enter_your_info"
-        android:inputType="text" />
+
 
     <!--Button for creating a QR code-->
     <Button
         android:id="@+id/idBtnGenerateQR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/idEdt"
+        android:layout_below="@id/idIVQrcode"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"

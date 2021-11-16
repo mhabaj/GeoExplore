@@ -13,14 +13,14 @@ import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.User
 
 
-class Profile : AppCompatActivity() {
+class ProfileFriends : AppCompatActivity() {
     private lateinit var Name : TextView
     var f_auth: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
+        setContentView(R.layout.profil_friends)
 
-        Name = findViewById(R.id.name)
+        Name = findViewById(R.id.name2)
         val db = Firebase.firestore
         val user = FirebaseAuth.getInstance().currentUser
         Name!!.text = user?.displayName
@@ -35,16 +35,15 @@ class Profile : AppCompatActivity() {
 
 
 
-        fun Settings(view: View?) {
-            val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
+    fun Settings(view: View?) {
+        val intent = Intent(this, Settings::class.java)
+        startActivity(intent)
 
-        }
-
-        fun Friend(view: View) {
-            val intent = Intent(this, Friends::class.java)
-            startActivity(intent)
-
-        }
     }
 
+    fun Friend(view: View) {
+        val intent = Intent(this, Friends::class.java)
+        startActivity(intent)
+
+    }
+}
