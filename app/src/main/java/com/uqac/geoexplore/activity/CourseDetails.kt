@@ -18,11 +18,13 @@ import com.google.type.DateTime
 import com.uqac.geoexplore.Functions
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
+import com.uqac.geoexplore.model.Group
 import com.uqac.geoexplore.model.Participation
 import java.time.Instant
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CourseDetails : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
@@ -79,10 +81,15 @@ class CourseDetails : AppCompatActivity() {
         })
     }
 
-    suspend fun joinCourse(view: android.view.View) {
+    fun joinCourse(view: android.view.View) {
         val userdb = Firebase.auth.currentUser
-        val currentUser = userdb?.uid?.let { Functions.getUserFromUid(it) }
 
-        db.collection("Participation").document().set(Participation(currentUser, course))
+        if (course.groups == null) {
+            course.groups = ArrayList()
+        }
+        val newGroup = Group()
+        newGroup.participants = ArrayList()
+        newGroup.participants?.add(userdb?.uid!!)
+        course.groups!!.add(newGroup)
     }
 }

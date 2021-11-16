@@ -8,7 +8,7 @@ import com.google.firebase.firestore.GeoPoint
 data class Course (var name: String ?= null,
                    var miscInfo:CourseMiscDetails ?= null,
                    var location: GeoPoint ?= null,
-                   var group: Group ?= null,
+                   var groups: ArrayList<Group> ?= null,
                    var checkPoint: CheckPoint ?= null,
                    var feed: Feed ?= null) {
 
