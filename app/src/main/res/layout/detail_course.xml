@@ -125,10 +125,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:fontFamily="@font/montserrat"
-                    android:text="@string/location"
+                    android:text="@string/get_to_location"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="openNav"/>
             </FrameLayout>
 
             <FrameLayout

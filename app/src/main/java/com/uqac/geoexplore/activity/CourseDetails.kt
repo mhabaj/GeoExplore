@@ -1,6 +1,8 @@
 package com.uqac.geoexplore.activity
 
 import android.content.ContentValues
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +24,6 @@ class CourseDetails : AppCompatActivity() {
     private lateinit var course: Course
 
     private lateinit var courseName: TextView
-    private lateinit var courseLocation: TextView
     private lateinit var courseDescription: TextView
     private lateinit var courseInterests: TextView
     private lateinit var courseDate: TextView
@@ -39,9 +40,6 @@ class CourseDetails : AppCompatActivity() {
     private fun fillInformation() {
         courseName = findViewById(R.id.courseNameView)
         courseName.text = course.name
-
-        courseLocation = findViewById(R.id.courseLocationView)
-        courseLocation.text = course.location?.latitude.toString() + ", " + course.location?.longitude
 
         courseDescription = findViewById(R.id.descriptionView)
         courseDescription.text = course.miscInfo?.description
@@ -65,5 +63,13 @@ class CourseDetails : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "Error getting documents: ", exception)
             }
+    }
+
+    fun openNav(view: android.view.View) {
+        val navUri = Uri.parse("http://maps.google.com/maps?&daddr=" +
+            course.location!!.latitude + "," + course.location!!.longitude)
+        startActivity(Intent(Intent.ACTION_VIEW).apply {
+            data = navUri
+        })
     }
 }
