@@ -28,6 +28,8 @@ class CourseDetails : AppCompatActivity() {
     private lateinit var courseInterests: TextView
     private lateinit var courseDate: TextView
     private lateinit var courseTime: TextView
+    private lateinit var courseDifficulty: TextView
+    private lateinit var courseRating: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,16 @@ class CourseDetails : AppCompatActivity() {
         courseDate = findViewById(R.id.editTextDate)
         courseDate.hint = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE)
 
+        courseDifficulty = findViewById(R.id.courseDifficultyView)
+        when (course.miscInfo?.difficulty) {
+            1 -> courseDifficulty.text = "Difficulty: Easy"
+            2 -> courseDifficulty.text = "Difficulty: Medium"
+            3 -> courseDifficulty.text = "Difficulty: Hard"
+        }
+
+
+        courseRating = findViewById(R.id.courseRating)
+        courseRating.text = "%.1f".format(course.miscInfo?.rating)
     }
 
     private fun getCourseFromName(name: String){
