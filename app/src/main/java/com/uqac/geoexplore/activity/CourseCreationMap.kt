@@ -80,7 +80,7 @@ class CourseCreationMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         mMap.setOnMarkerClickListener(this)
         mMap.setOnMapLongClickListener(this)
 
-        mMap.setPadding(0,0,0,135)
+        mMap.setPadding(0,270,0,135)
 
         setUpMap()
     }

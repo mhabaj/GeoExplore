@@ -91,7 +91,7 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         mMap.setOnMarkerClickListener(this)
         mMap.setOnCircleClickListener(this)
 
-        mMap.setPadding(0,0,0,135)
+        mMap.setPadding(0,150,0,135)
 
         setUpMap()
 
