@@ -8,8 +8,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.uqac.geoexplore.ForgotPasswordDialogFragement
+import com.uqac.geoexplore.MainActivity
 import com.uqac.geoexplore.R
 
 class LogIn : AppCompatActivity() {
@@ -46,10 +48,10 @@ class LogIn : AppCompatActivity() {
         var f_auth = FirebaseAuth.getInstance()
 /*
         if(f_auth.currentUser != null) {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            startActivity(Intent(applicationContext, Accueil::class.java))
             finish()
-        }*/
-
+        }
+*/
 
         //Verification
         var email = m_email?.text.toString().trim()
@@ -75,11 +77,13 @@ class LogIn : AppCompatActivity() {
 
         f_auth.signInWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
             if(taskId.isSuccessful) {
-                m_Resultat?.text = "Logged in Succesfully ! "
+                //m_Resultat?.text = "Logged in Succesfully ! "
                 startActivity(Intent(applicationContext, Accueil::class.java))
             }
             else {
-                m_Resultat?.text = "Error !!"+ taskId.exception
+                Toast.makeText(this, "Error : "+ taskId.exception!!.message, Toast.LENGTH_SHORT).show()
+
+               // m_Resultat?.text = "Error : "+ taskId.exception
                 progress_bar?.visibility = View.INVISIBLE
             }
         }

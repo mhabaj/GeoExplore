@@ -18,14 +18,13 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 
-
 class Friends : AppCompatActivity() {
 
     private var gridView: GridView? = null
     private var button: Button? = null
-    var list:List<String>? = null
+    var list: List<String>? = null
     var user: User? = null
-    override  fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.friends)
 
@@ -38,7 +37,23 @@ class Friends : AppCompatActivity() {
         val message = intent!!.getStringExtra("Id")
         MainScope().launch {
             user = Functions.getUserFromUid(dbUser!!.uid)
-            if (message != null) user!!.friends = user!!.friends!!.plus(message)
+            if (message != null ) {
+                var userTarget = Functions.getUserFromUid(message)
+                if (userTarget != null && userTarget.id != dbUser.uid) {
+
+                    user!!.friends = user!!.friends!!.plus(message)
+                    userTarget.friends = userTarget.friends!!.plus(dbUser.uid)
+
+                    db.collection("User").document(message).set(userTarget)
+
+                    userTarget = Functions.getUserFromUid(message)
+                    if(userTarget!=null && userTarget.friends!!.contains(dbUser.uid)){
+                        Toast.makeText(this@Friends, userTarget.shownName + " added to your friends list! ", Toast.LENGTH_SHORT).show()                    }
+                }
+
+            }
+
+
 
 
             db.collection("User").document(dbUser.uid.toString()).set(user!!)
@@ -47,11 +62,12 @@ class Friends : AppCompatActivity() {
             Log.d("App", user.toString())
             user = Functions.getUserFromUid(dbUser!!.uid)
 
-            for(i in user?.friends!!) {
+            for (i in user?.friends!!) {
                 list = list?.plus(Functions.getUserFromUid(i!!)?.shownName!!)
             }
 
-            val adapter: ArrayAdapter<String> = ArrayAdapter<String>(this@Friends ,
+            val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                this@Friends,
                 android.R.layout.simple_list_item_1, list!!
             )
 
@@ -63,22 +79,25 @@ class Friends : AppCompatActivity() {
                     (v as TextView).text, Toast.LENGTH_SHORT
                 ).show()
                 val intent = Intent(this@Friends, ProfileFriends::class.java)
-                Log.d("App",user?.friends!!.get(position))
-                intent.putExtra("id",user?.friends!!.get(position))
+                Log.d("App", user?.friends!!.get(position))
+                intent.putExtra("id", user?.friends!!.get(position))
                 startActivity(intent)
             })
 
         }
 
     }
+
     fun GenerateQrCode(view: View?) {
-        val intent = Intent(this, QrCodeActivity::class.java)
+        val intent = Intent(this, ReadQrCode::class.java)
         startActivity(intent)
 
     }
 
     fun ScanQrCode(view: View?) {
-        val intent = Intent(this, ReadQrCode::class.java)
+
+
+        val intent = Intent(this, QrCodeActivity::class.java)
         startActivity(intent)
 
     }

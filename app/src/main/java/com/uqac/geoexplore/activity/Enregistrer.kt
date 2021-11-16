@@ -68,7 +68,7 @@ class Enregistrer : AppCompatActivity() {
 
         f_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
             if(taskId.isSuccessful) {
-                m_Resultat?.setText("User Created ! ")
+                m_Resultat?.setText("User Created ")
 
                 val dbUser = Firebase.auth.currentUser
 
@@ -82,6 +82,7 @@ class Enregistrer : AppCompatActivity() {
                             db.collection("User")
                                 .document(Firebase.auth.currentUser?.uid.toString()).set(user)
                                 .addOnSuccessListener {
+
                                     startActivity(Intent(applicationContext, Accueil::class.java))
                                 }
                                 .addOnFailureListener { e ->
@@ -92,7 +93,9 @@ class Enregistrer : AppCompatActivity() {
 
             }
             else {
-                m_Resultat?.setText("Error !!"+ taskId.exception)
+                //m_Resultat?.setText("Error !!"+ taskId.exception)
+                Toast.makeText(this, "Error : "+ taskId.exception!!.message, Toast.LENGTH_SHORT).show()
+
                 progress_bar?.setVisibility(View.INVISIBLE)
             }
         }

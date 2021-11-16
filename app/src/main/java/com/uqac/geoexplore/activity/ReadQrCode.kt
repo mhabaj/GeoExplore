@@ -24,7 +24,7 @@ class ReadQrCode  : AppCompatActivity() {
         setContentView(R.layout.read_qrcode)
 
         if (checkPermission()) {
-            Toast.makeText(this, "Permission Granted..", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Reading new Friend QRCode", Toast.LENGTH_SHORT).show()
         } else {
             requestPermission()
         }
@@ -32,11 +32,11 @@ class ReadQrCode  : AppCompatActivity() {
         camera = findViewById<View>(R.id.camview) as ScannerLiveView
         camera!!.scannerViewEventListener = object : ScannerViewEventListener {
             override fun onScannerStarted(scanner: ScannerLiveView) {
-                Toast.makeText(this@ReadQrCode, "Scanner Started", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@ReadQrCode, "Scanner Started", Toast.LENGTH_SHORT).show()
             }
 
             override fun onScannerStopped(scanner: ScannerLiveView) {
-                Toast.makeText(this@ReadQrCode, "Scanner Stopped", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@ReadQrCode, "Scanner Stopped", Toast.LENGTH_SHORT).show()
             }
 
             override fun onScannerError(err: Throwable) {
