@@ -14,10 +14,14 @@ class Profile : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
 
 
+        Name = findViewById(R.id.name)
+        val db = Firebase.firestore
         val user = FirebaseAuth.getInstance().currentUser
+        Name!!.text = user?.displayName
+
+
         var m_name = findViewById<TextView>(R.id.textname)
 
-        m_name.text = user?.displayName
     }
 
     fun settings(view: View?) {
