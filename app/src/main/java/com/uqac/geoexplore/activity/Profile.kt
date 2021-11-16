@@ -8,10 +8,7 @@ import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.uqac.geoexplore.R
 
-
-class Profile() : AppCompatActivity() {
-
-
+class Profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -21,9 +18,7 @@ class Profile() : AppCompatActivity() {
         var m_name = findViewById<TextView>(R.id.textname)
 
         m_name.text = user?.displayName
-
     }
-
 
     fun settings(view: View?) {
         val intent = Intent(this, Settings::class.java)
@@ -31,4 +26,3 @@ class Profile() : AppCompatActivity() {
 
     }
 }
-

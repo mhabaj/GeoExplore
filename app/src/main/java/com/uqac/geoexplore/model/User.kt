@@ -11,4 +11,3 @@ class User(var id: String?=null, var shownName: String?=null, var email: String?
 
 }
 
-

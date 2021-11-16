@@ -15,10 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoExplorer">
+ 
         <activity
             android:name=".activity.CourseDetails"
             android:exported="true"/>
-
+			
         <activity
             android:name=".activity.DisplayCoursesMap"
             android:exported="true"/>
@@ -30,6 +31,7 @@
         <activity
             android:name=".activity.Profile"
             android:exported="true"/>
+
 
         <activity
             android:name=".activity.Settings"

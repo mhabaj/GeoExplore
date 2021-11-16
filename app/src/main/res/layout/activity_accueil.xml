@@ -69,11 +69,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
+                    android:onClick="profile"
                     app:backgroundTint="#FFFFFF"
                     app:icon="@drawable/ic_user_circle_regular"
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
-                    android:onClick="profile"
                     app:iconTint="#1a8a52"
                     />
             </TableRow>
