@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.uqac.geoexplore.R
@@ -26,7 +27,7 @@ class CourseCreation : AppCompatActivity() {
     private lateinit var difficultySpinner: Spinner
 
     private var difficulty: Int = 0
-    private lateinit var locationLatLng: LatLng
+    private lateinit var locationLatLng: GeoPoint
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,8 @@ class CourseCreation : AppCompatActivity() {
         courseInterests = findViewById(R.id.courseInterests)
         difficultySpinner = findViewById(R.id.courseDifficulty)
 
-        locationLatLng = intent.extras?.get("location") as LatLng
+        var locLatLng = intent.extras?.get("location") as LatLng
+        locationLatLng = GeoPoint(locLatLng.latitude, locLatLng.longitude)
         courseLocation.setText(locationLatLng.latitude.toString() + ", " + locationLatLng.longitude.toString())
 
 

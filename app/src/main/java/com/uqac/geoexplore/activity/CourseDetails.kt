@@ -41,10 +41,10 @@ class CourseDetails : AppCompatActivity() {
         courseName.text = course.name
 
         courseLocation = findViewById(R.id.courseLocationView)
-        courseLocation.text = course.location.latitude.toString() + ", " + course.location.longitude
+        courseLocation.text = course.location?.latitude.toString() + ", " + course.location?.longitude
 
         courseDescription = findViewById(R.id.descriptionView)
-        courseDescription.text = course.miscInfo.description
+        courseDescription.text = course.miscInfo?.description
 
         courseInterests = findViewById(R.id.courseInterestView)
 

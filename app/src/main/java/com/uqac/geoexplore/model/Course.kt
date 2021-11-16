@@ -3,8 +3,9 @@ package com.uqac.geoexplore.model
 
 
 import com.google.android.gms.maps.model.LatLng
+import com.google.firebase.firestore.GeoPoint
 
-data class Course (var name: String,var miscInfo:CourseMiscDetails ,var location: LatLng) {
+data class Course (var name: String ?= null,var miscInfo:CourseMiscDetails ?= null ,var location: GeoPoint ?= null) {
 
 
     /* private lateinit var id : String

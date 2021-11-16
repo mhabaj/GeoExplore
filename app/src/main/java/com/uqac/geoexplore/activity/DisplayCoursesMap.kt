@@ -104,7 +104,7 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
             .addOnSuccessListener { result ->
                 for (dbCourse in result) {
                     val course = dbCourse.toObject<Course>()
-                    courses[addCircle(course.location)] = course
+                    courses[addCircle(LatLng(course.location!!.latitude, course.location!!.longitude))] = course
                 }
             }
             .addOnFailureListener { exception ->
