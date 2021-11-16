@@ -67,9 +67,10 @@ class Friends : AppCompatActivity() {
                     applicationContext,
                     (v as TextView).text, Toast.LENGTH_SHORT
                 ).show()
-                //val intent = Intent(this@Friends, Friends::class.java)
-                //intent.putExtra("Id", data)
-                //startActivity(intent)
+                val intent = Intent(this@Friends, ProfileFriends::class.java)
+                Log.d("App",user?.friends!!.get(position))
+                intent.putExtra("id",user?.friends!!.get(position))
+                startActivity(intent)
             })
 
         }

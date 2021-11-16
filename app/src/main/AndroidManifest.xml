@@ -21,6 +21,9 @@
         android:name=".activity.Profile"
         android:exported="true" />
         <activity
+            android:name=".activity.ProfileFriends"
+            android:exported="true" />
+        <activity
             android:name=".activity.Settings"
             android:exported="true" />
         <activity
