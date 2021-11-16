@@ -28,7 +28,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.CircleOptions
-import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -133,7 +132,7 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         }
     }
 
-    private fun addCircle(location: GeoPoint): Circle {
+    private fun addCircle(location: LatLng): Circle {
         return mMap.addCircle(
             CircleOptions().center(LatLng(location.latitude, location.longitude))
                 .radius(500.0)
