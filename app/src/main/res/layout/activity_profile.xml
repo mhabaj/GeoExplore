@@ -40,35 +40,99 @@
                 android:layout_marginRight="20dp"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textname"
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="Name"
-                        android:textSize="28sp"
-                        android:textStyle="bold" />
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/city"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="City" />
+                        <TextView
+                            android:id="@+id/textname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text="Name"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/age"
+
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="Age" />
-                </LinearLayout>
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/city"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:layout_gravity="bottom"
+                            android:enabled="false"
+                            android:hint="City" />
+
+                        <Button
+                            android:id="@+id/buttonModif"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="#00FFFFFF"
+                            app:icon="@drawable/ic_icons_dark_edit"
+                            app:iconSize="20dp"
+                            android:onClick="switchCity"
+                            app:iconTint="@color/black">
+
+                        </Button>
+
+
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="33dp">
+
+                        <EditText
+                            android:id="@+id/age"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:layout_gravity="bottom"
+                            android:enabled="false"
+                            android:inputType="number"
+                            android:hint="Age" />
+
+
+                        <Button
+                            android:id="@+id/buttonModifAge"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="#00FFFFFF"
+                            android:onClick="switcher"
+                            app:icon="@drawable/ic_icons_dark_edit"
+                            app:iconSize="20dp"
+                            app:iconTint="@color/black">
+
+                        </Button>
+
+                        <Button
+                            android:id="@+id/buttonvalider"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="#00FFFFFF"
+                            android:onClick="valider"
+                            android:visibility="invisible"
+                            app:icon="@drawable/valider"
+                            app:iconSize="20dp"
+                            app:iconTint="#4CAF50">
+
+                        </Button>
+                    </TableRow>
+
+                </TableLayout>
 
                 <TableLayout
                     android:layout_width="match_parent"
