@@ -78,7 +78,7 @@ class Enregistrer : AppCompatActivity() {
                 dbUser!!.updateProfile(profileUpdates)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            val user = User(dbUser.uid.toString(),m_name?.text.toString(), dbUser.email.toString(),null)
+                            val user = User(dbUser.uid.toString(),m_name?.text.toString(), dbUser.email.toString(), emptyList())
                             db.collection("User")
                                 .document(Firebase.auth.currentUser?.uid.toString()).set(user)
                                 .addOnSuccessListener {

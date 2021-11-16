@@ -60,6 +60,13 @@
         <activity
             android:name=".activity.ReadQrCode"
             android:exported="true"/>
+        <activity
+            android:name=".activity.Friends"
+            android:exported="true" />
+        <activity
+            android:name=".activity.ProfileFriends"
+            android:exported="true" />
+
 
         <activity
             android:name=".MainActivity"

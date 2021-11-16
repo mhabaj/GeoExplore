@@ -1,6 +1,7 @@
 package com.uqac.geoexplore.activity
+
 import android.Manifest.permission
-import android.R.layout
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
@@ -47,7 +48,11 @@ class ReadQrCode  : AppCompatActivity() {
             }
 
             override fun onCodeScanned(data: String) {
-                scannedTV!!.setText(data)
+                scannedTV!!.setText("Done")
+                val intent = Intent(this@ReadQrCode, Friends::class.java)
+                intent.putExtra("Id", data)
+                startActivity(intent)
+
             }
         }
     }
@@ -93,7 +98,11 @@ class ReadQrCode  : AppCompatActivity() {
         )
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         // this method is called when user
         // allows the permission to use camera.
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -112,3 +121,4 @@ class ReadQrCode  : AppCompatActivity() {
         }
     }
 }
+
