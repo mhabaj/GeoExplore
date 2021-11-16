@@ -30,7 +30,8 @@
                 android:fontFamily="@font/montserrat"
                 android:text="Are you going ?"
                 android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:onClick="joinCourse"/>
 
         </FrameLayout>
 

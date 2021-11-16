@@ -9,18 +9,24 @@ import android.util.Log
 import android.widget.TextView
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks.await
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.type.DateTime
+import com.uqac.geoexplore.Functions
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
+import com.uqac.geoexplore.model.Participation
 import java.time.Instant
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 class CourseDetails : AppCompatActivity() {
+    private lateinit var db: FirebaseFirestore
+
     private lateinit var course: Course
 
     private lateinit var courseName: TextView
@@ -52,7 +58,7 @@ class CourseDetails : AppCompatActivity() {
     }
 
     private fun getCourseFromName(name: String){
-        val db = Firebase.firestore
+        db = Firebase.firestore
         db.collection("Course")
             .whereEqualTo("name", name)
             .get()
@@ -71,5 +77,12 @@ class CourseDetails : AppCompatActivity() {
         startActivity(Intent(Intent.ACTION_VIEW).apply {
             data = navUri
         })
+    }
+
+    suspend fun joinCourse(view: android.view.View) {
+        val userdb = Firebase.auth.currentUser
+        val currentUser = userdb?.uid?.let { Functions.getUserFromUid(it) }
+
+        db.collection("Participation").document().set(Participation(currentUser, course))
     }
 }
