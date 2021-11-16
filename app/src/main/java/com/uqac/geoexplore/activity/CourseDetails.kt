@@ -51,7 +51,7 @@ class CourseDetails : AppCompatActivity() {
 
     }
 
-    fun getCourseFromName(name: String){
+    private fun getCourseFromName(name: String){
         val db = Firebase.firestore
         db.collection("Course")
             .whereEqualTo("name", name)
