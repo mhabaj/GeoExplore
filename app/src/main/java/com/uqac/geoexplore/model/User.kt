@@ -2,7 +2,7 @@ package com.uqac.geoexplore.model
 
 
 
-class User(var id: String?=null, var shownName: String?=null, var email: String?=null, var friends: ArrayList<User> ) {
+class User(var id: String?=null, var shownName: String?=null, var email: String?=null, var friends: ArrayList<User>?) {
 
 
     override fun toString(): String {

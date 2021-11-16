@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.model.LatLng
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -70,7 +69,7 @@ class CourseCreation : AppCompatActivity() {
             val db = Firebase.firestore
             val userdb = Firebase.auth.currentUser
 
-            val currentUser = User(userdb?.uid.toString(), userdb?.displayName.toString(), userdb?.email.toString())
+            val currentUser = User(userdb?.uid.toString(), userdb?.displayName.toString(), userdb?.email.toString(),null)
 
 
             val courseDetails = CourseMiscDetails(currentUser, Date.from(Instant.now()).toString(), 0F, difficulty, courseDescription.text.toString() )

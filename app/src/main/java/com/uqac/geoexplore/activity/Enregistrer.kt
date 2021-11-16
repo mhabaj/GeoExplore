@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
@@ -79,7 +78,7 @@ class Enregistrer : AppCompatActivity() {
                 dbUser!!.updateProfile(profileUpdates)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            val user = User(dbUser.uid.toString(),m_name?.text.toString(), dbUser.email.toString())
+                            val user = User(dbUser.uid.toString(),m_name?.text.toString(), dbUser.email.toString(),null)
                             db.collection("User")
                                 .document(Firebase.auth.currentUser?.uid.toString()).set(user)
                                 .addOnSuccessListener {
