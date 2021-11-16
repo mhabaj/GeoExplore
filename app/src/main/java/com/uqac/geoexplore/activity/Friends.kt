@@ -45,30 +45,17 @@ class Friends : AppCompatActivity() {
             user = Functions.getUserFromUid(dbUser!!.uid)
             if (message != null) user!!.friends = user!!.friends!!.plus(message)
 
-            val profileUpdates = userProfileChangeRequest {
 
-            }
-            dbUser!!.updateProfile(profileUpdates)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val user = User(
-                            dbUser.uid,
-                            dbUser.displayName,
-                            dbUser.email.toString(),
-                            user!!.friends
-                        )
-                        db.collection("User")
-                            .document(Firebase.auth.currentUser?.uid.toString()).set(user)
+            db.collection("User").document(dbUser.uid.toString()).set(user!!)
 
-                    }
-                }
+
             Log.d("App", user.toString())
             user = Functions.getUserFromUid(dbUser!!.uid)
 
             for(i in user?.friends!!) {
                 list = list?.plus(Functions.getUserFromUid(i!!)?.shownName!!)
             }
-            
+
             val adapter: ArrayAdapter<String> = ArrayAdapter<String>(this@Friends ,
                 android.R.layout.simple_list_item_1, list!!
             )
@@ -80,6 +67,9 @@ class Friends : AppCompatActivity() {
                     applicationContext,
                     (v as TextView).text, Toast.LENGTH_SHORT
                 ).show()
+                //val intent = Intent(this@Friends, Friends::class.java)
+                //intent.putExtra("Id", data)
+                //startActivity(intent)
             })
 
         }
