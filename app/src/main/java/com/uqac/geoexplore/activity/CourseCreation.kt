@@ -15,9 +15,11 @@ import com.google.firebase.ktx.Firebase
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
 import com.uqac.geoexplore.model.CourseMiscDetails
+import com.uqac.geoexplore.model.Feed
 import com.uqac.geoexplore.model.User
 import java.time.Instant
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CourseCreation : AppCompatActivity() {
     private lateinit var courseName: EditText
@@ -39,13 +41,13 @@ class CourseCreation : AppCompatActivity() {
         courseInterests = findViewById(R.id.courseInterests)
         difficultySpinner = findViewById(R.id.courseDifficulty)
 
-        var locLatLng = intent.extras?.get("location") as LatLng
+        val locLatLng = intent.extras?.get("location") as LatLng
         locationLatLng = GeoPoint(locLatLng.latitude, locLatLng.longitude)
         courseLocation.setText(locationLatLng.latitude.toString() + ", " + locationLatLng.longitude.toString())
 
 
 
-        var adapter = ArrayAdapter.createFromResource(this, R.array.difficulties, R.layout.difficulty_spinner_selected_item)
+        val adapter = ArrayAdapter.createFromResource(this, R.array.difficulties, R.layout.difficulty_spinner_selected_item)
         adapter.setDropDownViewResource(R.layout.difficulty_spinner_item)
         difficultySpinner.adapter = adapter
 
@@ -58,8 +60,6 @@ class CourseCreation : AppCompatActivity() {
             }
 
         }
-
-
     }
 
     fun addCourseInDatabase(view: android.view.View) {
@@ -74,7 +74,7 @@ class CourseCreation : AppCompatActivity() {
             val currentUser = User(userdb?.uid.toString(), userdb?.displayName.toString(), userdb?.email.toString(),null)
 
 
-            val courseDetails = CourseMiscDetails(currentUser, Date.from(Instant.now()).toString(), 0F, difficulty, courseDescription.text.toString() )
+            val courseDetails = CourseMiscDetails(currentUser, Date.from(Instant.now()).toString(), 0F, difficulty, courseDescription.text.toString())
 
 
             if (courseName.text.toString() == "") {
@@ -82,6 +82,9 @@ class CourseCreation : AppCompatActivity() {
             }
             else {
                 val newCourse = Course(courseName.text.toString(), courseDetails, locationLatLng)
+                newCourse.feed = Feed()
+                newCourse.feed!!.comments = ArrayList()
+
                 db.collection("Course")
                     .add(newCourse)
                     .addOnSuccessListener { documentReference ->

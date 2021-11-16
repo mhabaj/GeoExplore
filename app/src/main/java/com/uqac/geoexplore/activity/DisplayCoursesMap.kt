@@ -166,12 +166,6 @@ class DisplayCoursesMap : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
                 val latLng = LatLng(address.latitude, address.longitude)
 
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f))
-
-                Toast.makeText(
-                    applicationContext,
-                    address.latitude.toString() + " " + address.longitude,
-                    Toast.LENGTH_LONG
-                ).show()
             }
             catch (e: IOException) {
                 Toast.makeText(applicationContext, "Failed to find location", Toast.LENGTH_LONG).show()

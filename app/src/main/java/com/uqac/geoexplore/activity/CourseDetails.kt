@@ -6,21 +6,26 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks.await
+import android.widget.Toast
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import com.google.type.DateTime
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
-import java.time.Instant
+import com.uqac.geoexplore.model.Group
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
+import kotlin.collections.ArrayList
 
 class CourseDetails : AppCompatActivity() {
+    private lateinit var db: FirebaseFirestore
+
+    private lateinit var joinButton: Button
+
     private lateinit var course: Course
 
     private lateinit var courseName: TextView
@@ -31,11 +36,16 @@ class CourseDetails : AppCompatActivity() {
     private lateinit var courseDifficulty: TextView
     private lateinit var courseRating: TextView
 
+    private lateinit var courseId: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_course)
 
         val selectedCourseName = intent.extras!!["courseName"] as String
+
+        joinButton = findViewById(R.id.joinBox)
+
         getCourseFromName(selectedCourseName)
     }
 
@@ -64,13 +74,26 @@ class CourseDetails : AppCompatActivity() {
     }
 
     private fun getCourseFromName(name: String){
-        val db = Firebase.firestore
+        db = Firebase.firestore
         db.collection("Course")
             .whereEqualTo("name", name)
             .get()
             .addOnSuccessListener { result ->
                 course = result.first().toObject()
+                courseId = result.first().id
                 fillInformation()
+
+                if (course.groups != null) {
+                    for (group in course.groups!!) {
+                        if (group.participants != null) {
+                            if (group.participants!!.contains(Firebase.auth.currentUser?.uid)) {
+                                joinButton.isEnabled = false
+                                joinButton.text = "Course Joined"
+                                joinButton.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+                            }
+                        }
+                    }
+                }
             }
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "Error getting documents: ", exception)
@@ -83,5 +106,27 @@ class CourseDetails : AppCompatActivity() {
         startActivity(Intent(Intent.ACTION_VIEW).apply {
             data = navUri
         })
+    }
+
+    fun joinCourse(view: android.view.View) {
+        println("Joining course")
+
+        val userdb = Firebase.auth.currentUser
+
+        if (course.groups == null) {
+            course.groups = ArrayList()
+        }
+        val newGroup = Group()
+        newGroup.participants = ArrayList()
+        newGroup.participants?.add(userdb?.uid!!)
+        course.groups!!.add(newGroup)
+
+        db.collection("Course").document(courseId).update("groups", course.groups)
+        println("Course Joined: " + course.name)
+
+        joinButton.isEnabled = false
+        joinButton.text = "Course Joined"
+        joinButton.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+
     }
 }
