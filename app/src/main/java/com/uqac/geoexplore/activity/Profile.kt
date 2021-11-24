@@ -10,21 +10,22 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.with
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 import com.uqac.geoexplore.Functions
-import com.uqac.geoexplore.GlideApp
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.User
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.profil_friends.*
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import java.lang.System.load
 import java.util.*
 
 class Profile : AppCompatActivity() {
@@ -55,13 +56,10 @@ class Profile : AppCompatActivity() {
             user = Functions.getUserFromUid(dbUser!!.uid)
             Log.d("App", user.toString())
             if (user!!.profileImageUrl != null) {
-                var storageReference = FirebaseStorage.getInstance().getReference().child("myimage");
 
                 var myUri = Uri.parse(user!!.profileImageUrl!!)
-                //val ref = FirebaseStorage.getInstance().getReference("/images/").child(myUri.path!!).downloadUrl.
-                GlideApp.with(this@Profile).load(myUri).into(selectphoto_imageview_register)
 
-                //Picasso.get().load(ref).into(selectphoto_imageview_register)
+                Picasso.get().load(myUri).into(selectphoto_imageview_register)
                 selectphoto_button_register.alpha = 0f
             }
         }
