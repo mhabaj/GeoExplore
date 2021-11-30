@@ -9,20 +9,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/image_profil"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="false"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/image_profil" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/selectphoto_button_register"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#00FFFFFF"
+                android:text="Select Photo"
+                android:textColor="#4CAF50"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/selectphoto_imageview_register"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:layout_constraintBottom_toBottomOf="@+id/selectphoto_button_register"
+                app:layout_constraintEnd_toEndOf="@+id/selectphoto_button_register"
+                app:layout_constraintStart_toStartOf="@+id/selectphoto_button_register"
+                app:layout_constraintTop_toTopOf="@+id/selectphoto_button_register" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -213,6 +232,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="20dp"
                         android:gravity="center">
+
                         <Button
                             android:id="@+id/buttonFriends"
                             android:layout_width="wrap_content"
@@ -224,6 +244,7 @@
                             app:iconGravity="textTop"
                             app:iconSize="30dp"
                             app:iconTint="#46C2A4" />
+
                         <Button
                             android:id="@+id/buttonSettings"
                             android:layout_width="wrap_content"
@@ -246,8 +267,6 @@
                             app:iconGravity="textTop"
                             app:iconSize="30dp"
                             app:iconTint="#9599B3" />
-
-
 
 
                     </TableRow>

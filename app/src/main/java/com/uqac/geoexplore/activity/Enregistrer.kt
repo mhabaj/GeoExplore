@@ -1,8 +1,11 @@
 package com.uqac.geoexplore.activity
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -12,14 +15,19 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.User
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_enregistrer.*
+import java.util.*
 
 
 class Enregistrer : AppCompatActivity() {
 
     private  var m_name :EditText? = null
     private var m_email:EditText? = null
+    var m_image: CircleImageView? = null
     private var m_password: EditText? = null
     private val TAG = "MyActivity"
     private var progress_bar : ProgressBar? =null
@@ -34,9 +42,11 @@ class Enregistrer : AppCompatActivity() {
         m_password = findViewById<EditText>(R.id.editTextTextPassword)
         progress_bar = findViewById<ProgressBar>(R.id.progressBarRecherche)
         m_Resultat = findViewById<TextView>(R.id.textAffichageResultat)
+        m_image = findViewById(R.id.selectphoto_imageview_register)
 
 
     }
+
 
     fun Continue(view: View?) {
         var f_auth = FirebaseAuth.getInstance()
@@ -64,7 +74,7 @@ class Enregistrer : AppCompatActivity() {
         progress_bar?.setVisibility(View.VISIBLE)
         m_Resultat?.setVisibility(View.VISIBLE)
 
-        // Enregistrer l'utilisateur dans la base de donnÃ©es
+
 
         f_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
             if(taskId.isSuccessful) {
@@ -78,7 +88,7 @@ class Enregistrer : AppCompatActivity() {
                 dbUser!!.updateProfile(profileUpdates)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            val user = User(dbUser.uid.toString(),m_name?.text.toString(), dbUser.email.toString(), emptyList())
+                            val user = User(dbUser.uid.toString(),m_name?.text.toString(), dbUser.email.toString(),null, emptyList())
                             db.collection("User")
                                 .document(Firebase.auth.currentUser?.uid.toString()).set(user)
                                 .addOnSuccessListener {
