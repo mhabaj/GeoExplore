@@ -33,4 +33,8 @@
     <string name="scanned_data">Scanned Data</string>
     <string name="creation">Creation</string>
     <string name="get_to_location">Get to Location</string>
+    <string name="title_activity_navbar">navbar</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

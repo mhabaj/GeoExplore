@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_log_in.view.*
 import kotlinx.android.synthetic.main.fragment_dialog_forgot_pass.view.*
 
-class ForgotPasswordDialogFragement :DialogFragment() {
+class ResetPasswordDialogFragement :DialogFragment() {
 
     private var m_email: EditText? = null
     private val TAG="My activity"

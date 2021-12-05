@@ -10,8 +10,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.uqac.geoexplore.ForgotPasswordDialogFragement
-import com.uqac.geoexplore.MainActivity
+import com.uqac.geoexplore.ResetPasswordDialogFragement
 import com.uqac.geoexplore.R
 
 class LogIn : AppCompatActivity() {
@@ -94,7 +93,7 @@ class LogIn : AppCompatActivity() {
     
 
     fun forgotPassword(view: View?){
-        var dialog = ForgotPasswordDialogFragement()
+        var dialog = ResetPasswordDialogFragement()
         dialog.show(supportFragmentManager, "customDialog")
 
     }

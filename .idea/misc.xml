@@ -7,15 +7,25 @@
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/drawable/button_log.xml" value="0.2703125" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_accueil.xml" value="0.13020833333333334" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_course_creation_map.xml" value="0.13020833333333334" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_display_courses_map.xml" value="0.25416666666666665" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_enregistrer.xml" value="0.25416666666666665" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_log_in.xml" value="0.25416666666666665" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_navbar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_recherche.xml" value="0.25416666666666665" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_settings.xml" value="0.12360688956433637" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/activity_settings2.xml" value="0.2" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/course.xml" value="0.13020833333333334" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/course_search.xml" value="0.13020833333333334" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/create_course.xml" value="0.13020833333333334" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/detail_course.xml" value="0.13020833333333334" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/difficulty_spinner_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/difficulty_spinner_selected_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/feed.xml" value="0.13020833333333334" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/fragment_dialog_forgot_pass.xml" value="0.25416666666666665" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/friends.xml" value="0.13020833333333334" />
+        <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/profil_friends.xml" value="0.25416666666666665" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/profile.xml" value="0.13020833333333334" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/read_qrcode.xml" value="0.13020833333333334" />
         <entry key="..\:/Drive/Backup/backupUSB2GoNoir/FAC/5emeAnneeUQAC/S9/AndroidProject/GeoExplore/app/src/main/res/layout/sign_in.xml" value="0.13020833333333334" />
@@ -31,7 +41,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

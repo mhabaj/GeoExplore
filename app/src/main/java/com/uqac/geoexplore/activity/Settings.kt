@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
+import com.uqac.geoexplore.ResetPasswordDialogFragement
 import com.uqac.geoexplore.MainActivity
 import com.uqac.geoexplore.R
 
@@ -19,5 +20,11 @@ class Settings : AppCompatActivity() {
         val intent = Intent(applicationContext, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun changePassword(view: View?){
+        var dialog = ResetPasswordDialogFragement()
+        dialog.show(supportFragmentManager, "customDialog")
+
     }
 }
