@@ -1,4 +1,5 @@
 package com.uqac.geoexplore.activity
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -35,7 +36,7 @@ class Friends : AppCompatActivity() {
         val message = intent!!.getStringExtra("Id")
         MainScope().launch {
             user = Functions.getUserFromUid(dbUser!!.uid)
-            if (message != null ) {
+            if (message != null) {
                 var userTarget = Functions.getUserFromUid(message)
                 if (userTarget != null && userTarget.id != dbUser.uid) {
 
@@ -45,8 +46,13 @@ class Friends : AppCompatActivity() {
                     db.collection("User").document(message).set(userTarget)
 
                     userTarget = Functions.getUserFromUid(message)
-                    if(userTarget!=null && userTarget.friends!!.contains(dbUser.uid)){
-                        Toast.makeText(this@Friends, userTarget.shownName + " added to your friends list! ", Toast.LENGTH_SHORT).show()                    }
+                    if (userTarget != null && userTarget.friends!!.contains(dbUser.uid)) {
+                        Toast.makeText(
+                            this@Friends,
+                            userTarget.shownName + " added to your friends list! ",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
 
             }

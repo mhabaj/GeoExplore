@@ -22,7 +22,7 @@ class Settings : AppCompatActivity() {
         finish()
     }
 
-    fun changePassword(view: View?){
+    fun changePassword(view: View?) {
         var dialog = ResetPasswordDialogFragement()
         dialog.show(supportFragmentManager, "customDialog")
 

@@ -56,15 +56,15 @@ class LogIn : AppCompatActivity() {
         var email = m_email?.text.toString().trim()
         var password = m_password?.text.toString().trim()
 
-        if(TextUtils.isEmpty(email)){
+        if (TextUtils.isEmpty(email)) {
             m_email?.error = "Email is Required."
             return
         }
-        if(TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             m_password?.error = "Password is Required."
             return
         }
-        if(m_password?.length()!! <6 ){
+        if (m_password?.length()!! < 6) {
             m_password?.error = "Password must have at least 6 characters."
             return
         }
@@ -74,15 +74,15 @@ class LogIn : AppCompatActivity() {
 
         // Enregistrer l'utilisateur dans la base de données
 
-        f_auth.signInWithEmailAndPassword(email,password).addOnCompleteListener { taskId ->
-            if(taskId.isSuccessful) {
+        f_auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { taskId ->
+            if (taskId.isSuccessful) {
                 //m_Resultat?.text = "Logged in Succesfully ! "
                 startActivity(Intent(applicationContext, Accueil::class.java))
-            }
-            else {
-                Toast.makeText(this, "Error : "+ taskId.exception!!.message, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Error : " + taskId.exception!!.message, Toast.LENGTH_SHORT)
+                    .show()
 
-               // m_Resultat?.text = "Error : "+ taskId.exception
+                // m_Resultat?.text = "Error : "+ taskId.exception
                 progress_bar?.visibility = View.INVISIBLE
             }
         }
@@ -90,9 +90,8 @@ class LogIn : AppCompatActivity() {
 
     }
 
-    
 
-    fun forgotPassword(view: View?){
+    fun forgotPassword(view: View?) {
         var dialog = ResetPasswordDialogFragement()
         dialog.show(supportFragmentManager, "customDialog")
 
