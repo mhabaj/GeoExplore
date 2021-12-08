@@ -13,7 +13,10 @@ class Accueil : AppCompatActivity() {
 
 
     }
-
+    fun showHistory(view: View){
+        val intent = Intent(this, History::class.java)
+        startActivity(intent)
+    }
     fun RechercherCourse(view: View){
         val intent = Intent(this, Recherche::class.java)
         startActivity(intent)

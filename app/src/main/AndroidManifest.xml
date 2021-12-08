@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoExplorer">
-
+        <activity
+            android:name=".activity.History"
+            android:exported="true" />
         <activity
             android:name=".activity.CourseDetails"
             android:exported="true" />

@@ -48,6 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:backgroundTint="#FFFFFF"
+                    android:onClick="showHistory"
                     app:icon="@drawable/ic_map_marker_alt_solid"
                     app:iconGravity="textTop"
                     app:iconSize="30dp"
