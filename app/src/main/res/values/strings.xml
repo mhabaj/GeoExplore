@@ -34,4 +34,5 @@
     <string name="creation">Creation</string>
     <string name="get_to_location">Get to Location</string>
     <string name="name">Name:</string>
+    <string name="itemCount">item_count</string>
 </resources>

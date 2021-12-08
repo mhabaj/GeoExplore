@@ -14,19 +14,20 @@ class MyAdapter( private val courseList : ArrayList<Course>): RecyclerView.Adapt
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView= LayoutInflater.from(parent.context).inflate(R.layout.course_item, parent, false)
+        val itemView= LayoutInflater.from(parent.context)
+            .inflate(R.layout.course_item, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentitem = courseList[position]
-        holder.name.text = currentitem.name
-        holder.description.text = currentitem.miscInfo?.description
-        holder.difficulty.text = currentitem.miscInfo?.difficulty.toString()
-        holder.rating.text = currentitem.miscInfo?.rating.toString()
+        val course : Course = courseList[position]
+        holder.name.text = course.name
+        holder.description.text = course.miscInfo?.description
+        holder.difficulty.text = course.miscInfo?.difficulty.toString()
+        holder.rating.text = course.miscInfo?.rating.toString()
     }
 
-    override fun getItemCount(): Int {
+    override fun getItemCount() :Int{
         return courseList.size
     }
 
