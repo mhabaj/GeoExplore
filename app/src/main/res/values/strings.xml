@@ -35,4 +35,6 @@
     <string name="get_to_location">Get to Location</string>
     <string name="name">Name:</string>
     <string name="itemCount">item_count</string>
+    <string name="submit">Submit</string>
+    <string name="ranking">Ranking</string>
 </resources>
