@@ -33,10 +33,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/selectphoto_imageview_register"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@+id/selectphoto_button_register"
                 app:layout_constraintEnd_toEndOf="@+id/selectphoto_button_register"
                 app:layout_constraintStart_toStartOf="@+id/selectphoto_button_register"
@@ -171,6 +171,7 @@
                             android:layout_height="wrap_content"
                             app:backgroundTint="#FFFFFF"
                             app:icon="@drawable/ic_chat"
+                            android:onClick="message"
                             app:iconGravity="textTop"
                             app:iconSize="30dp"
                             app:iconTint="#9599B3" />

@@ -58,6 +58,8 @@
         <activity
             android:name=".activity.Friends"
             android:exported="true" />
+        <activity android:name=".activity.ChatLogActivity"
+            android:parentActivityName=".activity.ProfileFriends" />
         <activity
             android:name=".activity.ProfileFriends"
             android:exported="true" />

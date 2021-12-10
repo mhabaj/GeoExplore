@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -49,15 +50,23 @@ class ProfileFriends : AppCompatActivity() {
     }
 
 
-    fun Settings(view: View?) {
-        val intent = Intent(this, Settings::class.java)
-        startActivity(intent)
 
+    fun Message(view: View){
+        val c_user = FirebaseAuth.getInstance().currentUser
+        val roomId = Name.text.toString()
+        if (roomId.isEmpty()) {
+            showErrorMessage()
+            return
+        }
+        Firebase.firestore.collection("User").document(c_user!!.uid).collection("rooms")
+            .document(roomId).set(mapOf(
+                Pair("id", roomId)
+            ))
+        val intent = Intent(this, ChatLogActivity::class.java)
+        intent.putExtra("INTENT_EXTRA_ROOMID", roomId)
+        startActivity(intent)
     }
-
-    fun Friend(view: View) {
-        val intent = Intent(this, Friends::class.java)
-        startActivity(intent)
-
+    private fun showErrorMessage() {
+        Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
     }
 }
