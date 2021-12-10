@@ -129,4 +129,8 @@ class CourseDetails : AppCompatActivity() {
         joinButton.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
 
     }
+
+    fun createGroup(view: android.view.View) {
+        startActivity(Intent(this, GroupCreation::class.java).putExtra("courseID", courseId))
+    }
 }
