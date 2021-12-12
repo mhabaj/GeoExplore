@@ -2,7 +2,6 @@ package com.uqac.geoexplore.model
 
 
 
-import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.GeoPoint
 
 data class Course (var name: String ?= null,
@@ -11,7 +10,9 @@ data class Course (var name: String ?= null,
                    var groups: ArrayList<Group> ?= null,
                    var checkPoint: CheckPoint ?= null,
                    var feed: Feed ?= null) {
-
+    override fun toString(): String {
+        return "Course(name=$name, miscInfo=$miscInfo, location=$location, groups=$groups, checkPoint=$checkPoint, feed=$feed) \n"
+    }
 
     /* private lateinit var id : String
     private lateinit var name : String

@@ -11,14 +11,15 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.uqac.geoexplore.Functions
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_recherche.*
 import kotlinx.android.synthetic.main.create_course.*
-
-
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 
 class Recherche : AppCompatActivity() {
@@ -38,23 +39,27 @@ class Recherche : AppCompatActivity() {
         my_adapter = MyAdapter(courseArraylist)
 
         courseRecycleview.adapter = my_adapter
-
-
+        /*
+        MainScope().launch {
+            Functions.sortCourses("2")
+        }
+    */
         EventChangeListener()
+
     }
 
 
-    private fun EventChangeListener(){
+    private fun EventChangeListener() {
 
         db = FirebaseFirestore.getInstance()
         db.collection("Course").addSnapshotListener(object : EventListener<QuerySnapshot> {
-            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException? ) {
-                if(error !=null){
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                if (error != null) {
                     Log.e("Firestore Error", error.message.toString())
                     return
                 }
-                for(dc : DocumentChange in value?.documentChanges!!){
-                    if(dc.type == DocumentChange.Type.ADDED) {
+                for (dc: DocumentChange in value?.documentChanges!!) {
+                    if (dc.type == DocumentChange.Type.ADDED) {
                         courseArraylist.add(dc.document.toObject(Course::class.java))
                     }
                 }
@@ -62,7 +67,6 @@ class Recherche : AppCompatActivity() {
             }
         })
     }
-
 
 
 }
