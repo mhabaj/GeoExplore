@@ -136,8 +136,9 @@ class CourseDetails : AppCompatActivity() {
                         if (group.participants!!.size > 1) {
                             createGroup.text = "View Group"
                             createGroup.setOnClickListener {
-                                println("Displaying group details")
-                                // Start Group view activity
+                                startActivity(Intent(this, GroupDetails::class.java)
+                                    .putExtra("members", group.participants)
+                                    .putExtra("courseName", course.name))
                             }
                         }
                     }
