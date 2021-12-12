@@ -1,5 +1,6 @@
 package com.uqac.geoexplore.activity
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,17 +11,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.uqac.geoexplore.FirestoreUtil
-import com.uqac.geoexplore.Functions
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.ChatMessage
 import com.uqac.geoexplore.model.User
-import kotlinx.android.synthetic.main.activity_chat_log.*
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import kotlinx.android.synthetic.main.activity_feed.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ChatLogActivity : AppCompatActivity() {
+class FeedActivity : AppCompatActivity() {
     val auth = FirebaseAuth.getInstance()
     val user = auth.currentUser
     val firestore = FirebaseFirestore.getInstance()
@@ -32,7 +30,7 @@ class ChatLogActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat_log)
+        setContentView(R.layout.activity_feed)
         checkUser()
 
         initList()
@@ -40,20 +38,21 @@ class ChatLogActivity : AppCompatActivity() {
     }
 
     private fun setViewListeners() {
-        send_button.setOnClickListener {
+        send_button_feed.setOnClickListener {
             sendChatMessage()
         }
     }
 
     private fun initList() {
-        recyclerview_chat_log.layoutManager = LinearLayoutManager(this)
-        var adapter = ChatAdapter(chatMessages,User())
-        recyclerview_chat_log.adapter = adapter
-       FirestoreUtil.getUser{
-            currentUser = it
-            adapter = ChatAdapter(chatMessages, currentUser)
-            recyclerview_chat_log.adapter = adapter
 
+        recyclerview_feed.layoutManager = LinearLayoutManager(this)
+        var adapter = FeedAdapter(chatMessages,User())
+        recyclerview_feed.adapter = adapter
+        FirestoreUtil.getUser{
+            currentUser = it
+            adapter = FeedAdapter(chatMessages, currentUser)
+            recyclerview_feed.adapter = adapter
+            Log.d("adapter", recyclerview_feed.adapter.toString())
             listenForChatMessages()
         }
 
@@ -87,13 +86,13 @@ class ChatLogActivity : AppCompatActivity() {
                 }
 
                 chatMessages.sortBy { it.timestamp }
-                recyclerview_chat_log.adapter?.notifyDataSetChanged()
+                recyclerview_feed.adapter?.notifyDataSetChanged()
             }
     }
 
     private fun sendChatMessage() {
-        val message = edittext_chat_log.text.toString()
-        edittext_chat_log.setText("")
+        val message = edittext_feed.text.toString()
+        edittext_feed.setText("")
 
         firestore.collection("rooms").document(roomId!!).collection("messages")
             .add(

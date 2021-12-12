@@ -22,18 +22,14 @@
         <activity
             android:name=".activity.GroupCreation"
             android:exported="false" />
-        <activity
-            android:name=".activity.CourseDetails"
-            android:exported="true" />
+    			
         <activity
             android:name=".activity.DisplayCoursesMap"
             android:exported="true" />
         <activity
             android:name=".activity.CourseCreation"
             android:exported="true" />
-        <activity
-            android:name=".activity.Profile"
-            android:exported="true" />
+
         <activity
             android:name=".activity.Settings"
             android:exported="true" />
@@ -63,6 +59,19 @@
         <activity
             android:name=".activity.ProfileFriends"
             android:exported="true" />
+        <activity android:name=".activity.FeedActivity"
+            android:parentActivityName=".activity.CourseDetails" />
+        <activity
+            android:name=".activity.CourseDetails"
+            android:exported="true"/>
+
+        <activity
+            android:name=".activity.MessageActivity"
+            android:parentActivityName=".activity.Profile"  />
+        <activity
+            android:name=".activity.Profile"
+            android:exported="true"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
