@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.uqac.geoexplore.Functions
-import com.uqac.geoexplore.ItemClickSupport
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.DetailMessage
 import com.uqac.geoexplore.model.User
