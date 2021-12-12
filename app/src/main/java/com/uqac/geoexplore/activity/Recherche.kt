@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Spinner
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,10 +32,14 @@ class Recherche : AppCompatActivity() {
     private lateinit var courseArraylist: ArrayList<Course>
     private lateinit var my_adapter: MyAdapter
     private lateinit var courseRecycleview : RecyclerView
+    private lateinit var spinner_diff : Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recherche)
+
+        spinner_diff = findViewById<Spinner>(R.id.courseDifficulty)
+
 
         courseRecycleview = findViewById(R.id.courseList)
         courseRecycleview.layoutManager = LinearLayoutManager(this)
@@ -51,7 +56,7 @@ class Recherche : AppCompatActivity() {
 
 
     private fun EventChangeListener(){
-/*
+
         db = FirebaseFirestore.getInstance()
         db.collection("Course").addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException? ) {
@@ -66,7 +71,7 @@ class Recherche : AppCompatActivity() {
                 }
                 my_adapter.notifyDataSetChanged()
             }
-        })*/                my_adapter.notifyDataSetChanged()
+        })
 
     }
 
@@ -75,17 +80,32 @@ class Recherche : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun submit(view: View){
+    fun submit(view: View) {
+        var diff = spinner_diff.getSelectedItem().toString()
+
+        var valeur :String=""
+        
+        if(diff=="Easy") valeur ="1"
+        if(diff=="Medium") valeur ="2"
+        if(diff=="Hard") valeur ="3"
+
+
 
         MainScope().launch {
-            courseArraylist = Functions.sortCourses("2")!!
-            println("LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n" + courseArraylist.toString())
-        }
 
+            courseRecycleview.recycledViewPool.clear()
+            courseArraylist.clear()
+
+            courseArraylist.addAll(Functions.sortCourses(valeur))
             my_adapter.notifyDataSetChanged()
 
 
+
         }
+    }
+
 
 
 }
+
+

@@ -34,7 +34,7 @@ class Functions {
             difficulty: String? = null,
             note: String? = null,
             distance: String? = null
-        ): ArrayList<Course>? {
+        ): ArrayList<Course> {
 
             var courseArraylist: ArrayList<Course> = ArrayList()
 
@@ -45,32 +45,28 @@ class Functions {
                 val db = Firebase.firestore
 
                 db.collection("Course").whereEqualTo("miscInfo.difficulty", difficulty.toInt())
-                    .addSnapshotListener(object : EventListener<QuerySnapshot> {
-                        override fun onEvent(
-                            value: QuerySnapshot?,
-                            error: FirebaseFirestoreException?
-                        ) {
-                            if (error != null) {
-                                Log.e("Firestore Error", error.message.toString())
+                    .get()
+                    .addOnSuccessListener { courses ->
 
-                                return
-                            }
-                            for (dc: DocumentChange in value?.documentChanges!!) {
-                                if (dc.type == DocumentChange.Type.ADDED) {
-                                    courseArraylist.add(dc.document.toObject(Course::class.java))
-                                 /*   Log.d(
-                                        "Function Recherche",
-                                        courseArraylist[courseArraylist.size - 1].toString()
-                                    )*/
+                        for (course in courses) {
+                            courseArraylist.add(course.toObject(Course::class.java))
+                            Log.d(
+                                "Function Recherche",
+                                courseArraylist[courseArraylist.size - 1].toString()
+                            )
 
-                                }
-                            }
                         }
-                    })
+
+                        //return courseArraylist
+                    }.await()
+
+
             }
 
-            return courseArraylist;
+            return courseArraylist
         }
     }
+
+
 
 }
