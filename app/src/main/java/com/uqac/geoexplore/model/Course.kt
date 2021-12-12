@@ -13,7 +13,11 @@ data class Course (var name: String ?= null,
                    var feed: Feed ?= null) {
 
 
-    /* private lateinit var id : String
+    override fun toString(): String {
+        return "Course(name=$name, miscInfo=$miscInfo, location=$location, groups=$groups, checkPoint=$checkPoint, feed=$feed)\n"
+    }
+
+/* private lateinit var id : String
     private lateinit var name : String
     private lateinit var location : String
     private lateinit var groups : ArrayList<Group>

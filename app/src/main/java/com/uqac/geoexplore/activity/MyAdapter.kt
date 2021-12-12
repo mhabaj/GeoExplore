@@ -39,4 +39,5 @@ class MyAdapter( private val courseList : ArrayList<Course>): RecyclerView.Adapt
 
     }
 
+
 }

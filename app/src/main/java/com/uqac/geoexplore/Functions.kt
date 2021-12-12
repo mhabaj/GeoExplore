@@ -7,6 +7,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.uqac.geoexplore.model.User
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
+import com.uqac.geoexplore.model.Course
 import kotlinx.coroutines.tasks.await
 
 class Functions {
@@ -21,6 +26,50 @@ class Functions {
                 null
             }
 
+
+        }
+
+
+        suspend fun sortCourses(
+            difficulty: String? = null,
+            note: String? = null,
+            distance: String? = null
+        ): ArrayList<Course>? {
+
+            var courseArraylist: ArrayList<Course> = ArrayList()
+
+            //On recup les courses (A AMELIORER: Recuperer que les courses qui nous interessent
+
+            if (!difficulty.isNullOrEmpty()) {
+
+                val db = Firebase.firestore
+
+                db.collection("Course").whereEqualTo("miscInfo.difficulty", difficulty.toInt())
+                    .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                        override fun onEvent(
+                            value: QuerySnapshot?,
+                            error: FirebaseFirestoreException?
+                        ) {
+                            if (error != null) {
+                                Log.e("Firestore Error", error.message.toString())
+
+                                return
+                            }
+                            for (dc: DocumentChange in value?.documentChanges!!) {
+                                if (dc.type == DocumentChange.Type.ADDED) {
+                                    courseArraylist.add(dc.document.toObject(Course::class.java))
+                                 /*   Log.d(
+                                        "Function Recherche",
+                                        courseArraylist[courseArraylist.size - 1].toString()
+                                    )*/
+
+                                }
+                            }
+                        }
+                    })
+            }
+
+            return courseArraylist;
         }
     }
 
