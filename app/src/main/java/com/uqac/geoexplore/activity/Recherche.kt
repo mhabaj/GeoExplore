@@ -1,9 +1,11 @@
 package com.uqac.geoexplore.activity
 
 import android.content.ContentValues
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
@@ -61,6 +63,11 @@ class Recherche : AppCompatActivity() {
                 my_adapter.notifyDataSetChanged()
             }
         })
+    }
+
+    fun retour(view: View){
+        val intent = Intent(this, Accueil::class.java)
+        startActivity(intent)
     }
 
 

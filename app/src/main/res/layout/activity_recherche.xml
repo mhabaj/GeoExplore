@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/bg_course_search"
     tools:context=".activity.Recherche">
 
@@ -18,7 +18,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.00999999">
+            app:layout_constraintVertical_bias="0.00999999"><![CDATA[
+
+                android:text="Button" />
+                ]]>
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:background="@color/white"
+
+                    app:icon="?attr/actionModeCloseDrawable"
+                    app:iconTint="#000000" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -29,6 +42,18 @@
                     android:textColor="#000000"
                     android:textSize="26sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/espace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text=""
+                    android:textColor="#000000"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
 
         </LinearLayout>
 
@@ -54,19 +79,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="25dp"
+                            android:background="@color/whiteGrey"
                             android:ems="10"
                             android:entries="@array/ranking"
-                            android:gravity="start|top" />
+                            android:gravity="start|top"
+                            android:padding="5dp" />
 
                         <Spinner
                             android:id="@+id/courseDifficulty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="25dp"
+                            android:background="@color/whiteGrey"
                             android:ems="10"
                             android:entries="@array/difficulty"
+                            android:gravity="start|top"
 
-                            android:gravity="start|top" />
+                            android:padding="5dp" />
+
                         <TextView
                             android:id="@+id/textView6"
                             android:layout_width="wrap_content"
@@ -84,9 +114,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:background="@color/black"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:text="@string/submit"
+                    android:textColor="@color/white"
                     tools:ignore="RtlHardcoded">
 
                 </Button>
@@ -105,12 +137,6 @@
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="MissingConstraints"
             tools:listitem="@layout/course_item" />
-
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
