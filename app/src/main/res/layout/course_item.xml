@@ -7,9 +7,9 @@
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
     app:cardBackgroundColor="#6FFFFFFF"
-    app:cardCornerRadius="500dp"
-    app:cardElevation="24dp"
-    app:contentPadding="10dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="7dp"
+    app:contentPadding="5dp"
     tools:ignore="MissingClass">
 
 
