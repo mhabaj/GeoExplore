@@ -17,20 +17,19 @@
         android:background="@drawable/shape_bubble_sent"
         android:textColor="@android:color/white"
         android:padding="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imageview_feed_to_row"
-        app:layout_constraintTop_toTopOf="@+id/imageview_feed_to_row" />
+        app:layout_constraintStart_toEndOf="@+id/textView_feed_to_row"
+        app:layout_constraintTop_toTopOf="@+id/textView_feed_to_row" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageview_feed_to_row"
+    <TextView
+        android:id="@+id/textView_feed_to_row"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:civ_border_width="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        android:text="TextView" />
 
     <TextView
         android:id="@+id/textview_feed_sent"
@@ -43,21 +42,18 @@
         android:maxWidth="240dp"
         android:padding="16dp"
         android:text="This is my message that will wrap into multiple lines and keep on going"
-        app:layout_constraintEnd_toStartOf="@+id/imageview_feed_from_row"
-        app:layout_constraintTop_toTopOf="@+id/imageview_feed_from_row" />
+        app:layout_constraintEnd_toStartOf="@+id/textView_feed_from_row"
+        app:layout_constraintTop_toTopOf="@+id/textView_feed_from_row" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageview_feed_from_row"
+    <TextView
+        android:id="@+id/textView_feed_from_row"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@android:color/black"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        android:text="TextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

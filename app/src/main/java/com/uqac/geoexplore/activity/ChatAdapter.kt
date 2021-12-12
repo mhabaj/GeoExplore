@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import com.uqac.geoexplore.FirestoreUtil
+import com.uqac.geoexplore.Functions
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.ChatMessage
 import com.uqac.geoexplore.model.User
 import kotlinx.android.synthetic.main.list_item_chat.view.*
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 class ChatAdapter(val chatMessages: List<ChatMessage>, val user: User): RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
@@ -27,21 +30,27 @@ class ChatAdapter(val chatMessages: List<ChatMessage>, val user: User): Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chatMessage = chatMessages[position]
 
-        val uri = user!!.profileImageUrl
+
         if (chatMessage.user == user.id) {
             holder.itemView.textview_chat_sent.text = chatMessage.text
             val targetImageView = holder.itemView.imageview_chat_from_row
+            val uri = user!!.profileImageUrl
             Picasso.get().load(uri).into(targetImageView)
             holder.itemView.textview_chat_received.visibility = View.GONE
             holder.itemView.imageview_chat_to_row.visibility = View.GONE
         } else {
             holder.itemView.textview_chat_received.text = chatMessage.text
             val targetImageView = holder.itemView.imageview_chat_to_row
-            Picasso.get().load(uri).into(targetImageView)
+            MainScope().launch {
+                val other_user = Functions.getUserFromUid(chatMessage.user)
+                val uri = other_user!!.profileImageUrl
+                Picasso.get().load(uri).into(targetImageView)
+            }
             holder.itemView.textview_chat_sent.visibility = View.GONE
             holder.itemView.imageview_chat_from_row.visibility = View.GONE
+            }
         }
-    }
+
 
 
     class ViewHolder(inflater: LayoutInflater, parent: ViewGroup): RecyclerView.ViewHolder(

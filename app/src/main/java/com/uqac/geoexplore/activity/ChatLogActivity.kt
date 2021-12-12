@@ -9,6 +9,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.squareup.picasso.Picasso
 import com.uqac.geoexplore.FirestoreUtil
 import com.uqac.geoexplore.Functions
 import com.uqac.geoexplore.R
@@ -29,6 +30,7 @@ class ChatLogActivity : AppCompatActivity() {
     val chatMessages = ArrayList<ChatMessage>()
     var chatRegistration: ListenerRegistration? = null
     var roomId: String? = null
+    var other_user:String? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +63,7 @@ class ChatLogActivity : AppCompatActivity() {
 
     private fun listenForChatMessages() {
         roomId = intent.getStringExtra("INTENT_EXTRA_ROOMID")
+        other_user = intent.getStringExtra("OTHER_USER")
         if (roomId == null) {
             finish()
             return
@@ -81,6 +84,7 @@ class ChatLogActivity : AppCompatActivity() {
                         ChatMessage(
                             messageDocument["text"] as String,
                             messageDocument["user"] as String,
+                            messageDocument["other_user"] as String,
                             messageDocument["timestamp"] as Timestamp
                         )
                     )
@@ -94,15 +98,28 @@ class ChatLogActivity : AppCompatActivity() {
     private fun sendChatMessage() {
         val message = edittext_chat_log.text.toString()
         edittext_chat_log.setText("")
-
-        firestore.collection("rooms").document(roomId!!).collection("messages")
-            .add(
-                mapOf(
-                    Pair("text", message),
-                    Pair("user",  user?.uid),
-                    Pair("timestamp", Timestamp.now())
+        Log.d("chat",chatMessages.toString())
+        if(other_user == null){
+            firestore.collection("rooms").document(roomId!!).collection("messages")
+                .add(
+                    mapOf(
+                        Pair("text", message),
+                        Pair("user",user!!.uid),
+                        Pair("other_user",  chatMessages.last().user),
+                        Pair("timestamp", Timestamp.now())
+                    )
                 )
-            )
+        } else {
+            firestore.collection("rooms").document(roomId!!).collection("messages")
+                .add(
+                    mapOf(
+                        Pair("text", message),
+                        Pair("user", user?.uid),
+                        Pair("other_user", other_user),
+                        Pair("timestamp", Timestamp.now())
+                    )
+                )
+        }
     }
 
     private fun checkUser() {

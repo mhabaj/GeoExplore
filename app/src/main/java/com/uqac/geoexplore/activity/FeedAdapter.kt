@@ -6,12 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.uqac.geoexplore.Functions
 import com.uqac.geoexplore.R
-import com.uqac.geoexplore.model.ChatMessage
+import com.uqac.geoexplore.model.FeedMessage
 import com.uqac.geoexplore.model.User
 import kotlinx.android.synthetic.main.list_item_feed.view.*
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
-class FeedAdapter(val chatMessages: List<ChatMessage>, val user: User): RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
+class FeedAdapter(val chatMessages: List<FeedMessage>, val user: User): RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -25,19 +28,20 @@ class FeedAdapter(val chatMessages: List<ChatMessage>, val user: User): Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chatMessage = chatMessages[position]
 
-        val uri = user!!.profileImageUrl
+
         if (chatMessage.user == user.id) {
             holder.itemView.textview_feed_sent.text = chatMessage.text
-            val targetImageView = holder.itemView.imageview_feed_from_row
-            Picasso.get().load(uri).into(targetImageView)
+            holder.itemView.textView_feed_from_row.text= user.shownName
             holder.itemView.textview_feed_received.visibility = View.GONE
-            holder.itemView.imageview_feed_to_row.visibility = View.GONE
+            holder.itemView.textView_feed_to_row.visibility = View.GONE
         } else {
             holder.itemView.textview_feed_received.text = chatMessage.text
-            val targetImageView = holder.itemView.imageview_feed_to_row
-            Picasso.get().load(uri).into(targetImageView)
+            MainScope().launch {
+                val other_user = Functions.getUserFromUid(chatMessage.user)
+                holder.itemView.textView_feed_to_row.text= other_user!!.shownName
+            }
             holder.itemView.textview_feed_sent.visibility = View.GONE
-            holder.itemView.imageview_feed_from_row.visibility = View.GONE
+            holder.itemView.textView_feed_from_row.visibility = View.GONE
         }
     }
 

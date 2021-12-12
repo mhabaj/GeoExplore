@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 
 class ProfileFriends : AppCompatActivity() {
     private lateinit var Name : TextView
+    private lateinit var message : String
     var f_auth: FirebaseAuth? = null
     var user: User? = null
 
@@ -33,7 +34,7 @@ class ProfileFriends : AppCompatActivity() {
 
         Name = findViewById(R.id.name2)
         val intent = intent
-        val message = intent!!.getStringExtra("id")
+        message = intent!!.getStringExtra("id").toString()
         MainScope().launch {
             user = Functions.getUserFromUid(message!!)
             Name!!.text = user?.shownName
@@ -53,7 +54,7 @@ class ProfileFriends : AppCompatActivity() {
 
     fun Message(view: View){
         val c_user = FirebaseAuth.getInstance().currentUser
-        val roomId = Name.text.toString()
+        val roomId = Name.text.toString() +"_"+ c_user!!.displayName.toString()
         if (roomId.isEmpty()) {
             showErrorMessage()
             return
@@ -62,8 +63,13 @@ class ProfileFriends : AppCompatActivity() {
             .document(roomId).set(mapOf(
                 Pair("id", roomId)
             ))
+        Firebase.firestore.collection("User").document(message).collection("rooms")
+            .document(c_user.displayName.toString()).set(mapOf(
+                Pair("id", roomId),
+            ))
         val intent = Intent(this, ChatLogActivity::class.java)
         intent.putExtra("INTENT_EXTRA_ROOMID", roomId)
+        intent.putExtra("OTHER_USER",message)
         startActivity(intent)
     }
     private fun showErrorMessage() {

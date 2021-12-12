@@ -61,8 +61,12 @@ class MessageActivity : AppCompatActivity() {
                         return@addSnapshotListener
                     usernameMessages.clear()
                     for(usernameDocument in usernameSnapshot.documents){
-                        usernameMessages.add(usernameDocument.id)
+                        usernameMessages.add(usernameDocument.get("id") as String)
+                        Log.d("test",firestore.collection("User")
+                                .document(currentUser.id.toString())
+                                .collection("rooms").document(usernameDocument.toString()).collection(usernameDocument.toString()).id)
                     }
+
                     Log.d("liste username messages",usernameMessages.toString())
                     for(username in usernameMessages) {
                         listenForChatMessages(username)
@@ -82,20 +86,28 @@ class MessageActivity : AppCompatActivity() {
                          return@addSnapshotListener
                      }
                      chatMessages.clear()
+                     LastMessages.clear()
                      for (messageDocument in messageSnapshot.documents) {
+                         if(messageDocument["other_user"]!=null){
                         chatMessages.add(
                             DetailMessage(
                                 messageDocument["text"] as String,
                                 messageDocument["user"] as String,
+                                messageDocument["other_user"] as String,
                                 messageDocument["timestamp"] as Timestamp,
                                 username as String
                             )
-                         )
+                         )} else {
+
+                         }
                      }
                      chatMessages.sortBy { it.timestamp }
-                     LastMessages.add(chatMessages.last())
-                     LastMessages.sortBy{it.user}
-                     recyclerview_newmessage.adapter?.notifyDataSetChanged()
+                     if(chatMessages.isEmpty()){}
+                     else {
+                         LastMessages.add(chatMessages.last())
+                         LastMessages.sortBy { it.user }
+                         recyclerview_newmessage.adapter?.notifyDataSetChanged()
+                     }
                  }
     }
 

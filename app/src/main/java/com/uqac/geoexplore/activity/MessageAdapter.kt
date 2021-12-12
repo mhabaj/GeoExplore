@@ -8,12 +8,15 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.uqac.geoexplore.Functions
 import com.uqac.geoexplore.ItemClickSupport
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.DetailMessage
 import com.uqac.geoexplore.model.User
 import kotlinx.android.synthetic.main.latest_message_row.*
 import kotlinx.android.synthetic.main.latest_message_row.view.*
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 
 class MessageAdapter(val chatMessages: List<DetailMessage>, val user: User): RecyclerView.Adapter<MessageAdapter.ViewHolder>() {
@@ -30,16 +33,21 @@ class MessageAdapter(val chatMessages: List<DetailMessage>, val user: User): Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val chatMessage = chatMessages[position]
 
-        val uri = user!!.profileImageUrl
+
         if (chatMessage.user == user.id) {
             holder.itemView.message_textview_latest_message.text = chatMessage.text
-            //val targetImageView = holder.itemView.imageview_latest_message
-            //Picasso.get().load(uri).into(targetImageView)
+            val targetImageView = holder.itemView.imageview_latest_message
+            val uri = user!!.profileImageUrl
+            Picasso.get().load(uri).into(targetImageView)
             holder.itemView.username_textview_latest_message.text = chatMessage.id
         } else {
             holder.itemView.message_textview_latest_message.text = chatMessage.text
             val targetImageView = holder.itemView.imageview_latest_message
-            Picasso.get().load(uri).into(targetImageView)
+            MainScope().launch {
+                val other_user = Functions.getUserFromUid(chatMessage.user)
+                val uri = other_user!!.profileImageUrl
+                Picasso.get().load(uri).into(targetImageView)
+            }
             holder.itemView.username_textview_latest_message.text = chatMessage.id
 
         }

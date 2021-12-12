@@ -12,7 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.uqac.geoexplore.FirestoreUtil
 import com.uqac.geoexplore.R
-import com.uqac.geoexplore.model.ChatMessage
+import com.uqac.geoexplore.model.FeedMessage
 import com.uqac.geoexplore.model.User
 import kotlinx.android.synthetic.main.activity_feed.*
 import java.util.*
@@ -24,7 +24,7 @@ class FeedActivity : AppCompatActivity() {
     val firestore = FirebaseFirestore.getInstance()
     private  lateinit  var currentUser: User
 
-    val chatMessages = ArrayList<ChatMessage>()
+    val chatMessages = ArrayList<FeedMessage>()
     var chatRegistration: ListenerRegistration? = null
     var roomId: String? = null
 
@@ -77,7 +77,7 @@ class FeedActivity : AppCompatActivity() {
 
                 for (messageDocument in messageSnapshot.documents) {
                     chatMessages.add(
-                        ChatMessage(
+                        FeedMessage(
                             messageDocument["text"] as String,
                             messageDocument["user"] as String,
                             messageDocument["timestamp"] as Timestamp
