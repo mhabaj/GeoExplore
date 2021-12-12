@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -17,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.Course
 import com.uqac.geoexplore.model.Group
+import kotlinx.android.synthetic.main.detail_course.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
@@ -47,6 +49,7 @@ class CourseDetails : AppCompatActivity() {
         joinButton = findViewById(R.id.joinBox)
 
         getCourseFromName(selectedCourseName)
+
     }
 
     private fun fillInformation() {
@@ -83,17 +86,7 @@ class CourseDetails : AppCompatActivity() {
                 courseId = result.first().id
                 fillInformation()
 
-                if (course.groups != null) {
-                    for (group in course.groups!!) {
-                        if (group.participants != null) {
-                            if (group.participants!!.contains(Firebase.auth.currentUser?.uid)) {
-                                joinButton.isEnabled = false
-                                joinButton.text = "Course Joined"
-                                joinButton.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
-                            }
-                        }
-                    }
-                }
+                checkGroups()
             }
             .addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "Error getting documents: ", exception)
@@ -128,5 +121,34 @@ class CourseDetails : AppCompatActivity() {
         joinButton.text = "Course Joined"
         joinButton.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
 
+    }
+
+    private fun checkGroups() {
+        if (course.groups != null) {
+            for (group in course.groups!!) {
+                if (group.participants != null) {
+                    if (group.participants!!.contains(Firebase.auth.currentUser?.uid)) {
+                        joinButton.isEnabled = false
+                        joinButton.text = "Course Joined"
+                        joinButton.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+
+                        // Case group participation
+                        if (group.participants!!.size > 1) {
+                            createGroup.text = "View Group"
+                            createGroup.setOnClickListener {
+                                startActivity(Intent(this, GroupDetails::class.java)
+                                    .putExtra("members", group.participants)
+                                    .putExtra("courseName", course.name))
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    fun createGroup(view: android.view.View) {
+        startActivity(Intent(this, GroupCreation::class.java).putExtra("courseID", courseId))
     }
 }

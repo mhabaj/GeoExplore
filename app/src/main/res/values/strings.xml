@@ -33,4 +33,6 @@
     <string name="scanned_data">Scanned Data</string>
     <string name="creation">Creation</string>
     <string name="get_to_location">Get to Location</string>
+    <string name="create_group">Create Group</string>
+    <string name="join_course">Join Course</string>
 </resources>

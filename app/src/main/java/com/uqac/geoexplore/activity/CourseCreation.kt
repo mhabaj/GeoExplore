@@ -81,7 +81,7 @@ class CourseCreation : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Please chose a name for the course", Toast.LENGTH_LONG).show()
             }
             else {
-                val newCourse = Course(courseName.text.toString(), courseDetails, locationLatLng)
+                val newCourse = Course(courseName.text.toString(), courseDetails, locationLatLng, groups = ArrayList())
                 newCourse.feed = Feed()
                 newCourse.feed!!.comments = ArrayList()
 

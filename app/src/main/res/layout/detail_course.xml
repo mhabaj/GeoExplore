@@ -28,11 +28,32 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_icon_add"
                 android:fontFamily="@font/montserrat"
-                android:text="Join Course"
+                android:text="@string/join_course"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:onClick="joinCourse"
                 android:backgroundTint="#25BF72"
+                />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/createGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_friends"
+                android:drawableTint="#2b2b2a"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/create_group"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:onClick="createGroup"
+                android:backgroundTint="#e2e2e2"
                 />
 
         </FrameLayout>
