@@ -1,15 +1,24 @@
 package com.uqac.geoexplore
 
-import android.content.ContentValues.TAG
+import android.annotation.SuppressLint
+import android.content.Context
+import android.location.*
 import android.util.Log
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.uqac.geoexplore.model.User
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.*
 import com.uqac.geoexplore.model.Course
 import kotlinx.coroutines.tasks.await
+import android.location.LocationManager
+import androidx.core.content.ContextCompat
+
+import androidx.core.content.ContextCompat.getSystemService
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationServices
+
 
 class Functions {
 
@@ -27,6 +36,7 @@ class Functions {
 
         }
 
+        @SuppressLint("MissingPermission")
         suspend fun sortCourses(
             difficulty: String? = null,
             note: String? = null,
@@ -67,11 +77,27 @@ class Functions {
             }
 
             if (!distance.isNullOrEmpty()) {
-                
+                //  distanceBetween();
+                //getLastKno
+                // FusedLocationProviderClient - Main class for receiving location updates.
+                lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
+                // LocationRequest - Requirements for the location updates, i.e.,
+                // how often you should receive updates, the priority, etc.
+                lateinit var locationRequest: LocationRequest
+
+                // LocationCallback - Called when FusedLocationProviderClient
+                // has a new Location
+                lateinit var locationCallback: LocationCallback
+
+                // This will store current location info
+                var currentLocation: Location? = null
+
+                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+
+
             }
-
-
-
             return null;
         }
 

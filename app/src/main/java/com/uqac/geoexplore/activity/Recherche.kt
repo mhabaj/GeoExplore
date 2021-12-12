@@ -44,7 +44,7 @@ class Recherche : AppCompatActivity() {
             Functions.sortCourses("2")
         }
     */
-        EventChangeListener()
+        //EventChangeListener()
 
     }
 
