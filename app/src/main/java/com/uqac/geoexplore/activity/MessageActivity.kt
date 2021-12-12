@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.uqac.geoexplore.FirestoreUtil
-import com.uqac.geoexplore.ItemClickSupport
 import com.uqac.geoexplore.R
 import com.uqac.geoexplore.model.DetailMessage
 import com.uqac.geoexplore.model.User
