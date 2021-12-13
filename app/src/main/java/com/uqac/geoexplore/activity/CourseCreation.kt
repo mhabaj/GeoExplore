@@ -2,10 +2,12 @@ package com.uqac.geoexplore.activity
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.ktx.auth
@@ -62,6 +64,7 @@ class CourseCreation : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun addCourseInDatabase(view: android.view.View) {
         if (difficulty == 0) {
             Toast.makeText(applicationContext, "Please select a difficulty", Toast.LENGTH_LONG).show()

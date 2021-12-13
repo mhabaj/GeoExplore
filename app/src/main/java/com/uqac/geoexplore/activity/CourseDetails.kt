@@ -12,6 +12,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks.await
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -62,7 +65,7 @@ class CourseDetails : AppCompatActivity() {
         courseInterests = findViewById(R.id.courseInterestView)
 
         courseDate = findViewById(R.id.editTextDate)
-        courseDate.hint = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE)
+        //courseDate.hint = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE)
 
         courseDifficulty = findViewById(R.id.courseDifficultyView)
         when (course.miscInfo?.difficulty) {
@@ -150,5 +153,23 @@ class CourseDetails : AppCompatActivity() {
 
     fun createGroup(view: android.view.View) {
         startActivity(Intent(this, GroupCreation::class.java).putExtra("courseID", courseId))
+    }
+    fun feed(view: View){
+        val c_user = FirebaseAuth.getInstance().currentUser
+        val roomId = courseName.text.toString()
+        if (roomId.isEmpty()) {
+            showErrorMessage()
+            return
+        }
+        Firebase.firestore.collection("User").document(c_user!!.uid).collection("rooms")
+            .document(roomId).set(mapOf(
+                Pair("id", roomId)
+            ))
+        val intent = Intent(this, FeedActivity::class.java)
+        intent.putExtra("INTENT_EXTRA_ROOMID", roomId)
+        startActivity(intent)
+    }
+    private fun showErrorMessage() {
+        Toast.makeText(this,"Error", Toast.LENGTH_SHORT).show();
     }
 }

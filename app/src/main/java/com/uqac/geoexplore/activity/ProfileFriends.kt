@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -23,6 +24,7 @@ import kotlinx.coroutines.launch
 
 class ProfileFriends : AppCompatActivity() {
     private lateinit var Name : TextView
+    private lateinit var message : String
     var f_auth: FirebaseAuth? = null
     var user: User? = null
 
@@ -32,7 +34,7 @@ class ProfileFriends : AppCompatActivity() {
 
         Name = findViewById(R.id.name2)
         val intent = intent
-        val message = intent!!.getStringExtra("id")
+        message = intent!!.getStringExtra("id").toString()
         MainScope().launch {
             user = Functions.getUserFromUid(message!!)
             Name!!.text = user?.shownName
@@ -49,15 +51,28 @@ class ProfileFriends : AppCompatActivity() {
     }
 
 
-    fun Settings(view: View?) {
-        val intent = Intent(this, Settings::class.java)
-        startActivity(intent)
 
+    fun Message(view: View){
+        val c_user = FirebaseAuth.getInstance().currentUser
+        val roomId = Name.text.toString() +"_"+ c_user!!.displayName.toString()
+        if (roomId.isEmpty()) {
+            showErrorMessage()
+            return
+        }
+        Firebase.firestore.collection("User").document(c_user!!.uid).collection("rooms")
+            .document(roomId).set(mapOf(
+                Pair("id", roomId)
+            ))
+        Firebase.firestore.collection("User").document(message).collection("rooms")
+            .document(c_user.displayName.toString()).set(mapOf(
+                Pair("id", roomId),
+            ))
+        val intent = Intent(this, ChatLogActivity::class.java)
+        intent.putExtra("INTENT_EXTRA_ROOMID", roomId)
+        intent.putExtra("OTHER_USER",message)
+        startActivity(intent)
     }
-
-    fun Friend(view: View) {
-        val intent = Intent(this, Friends::class.java)
-        startActivity(intent)
-
+    private fun showErrorMessage() {
+        Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
     }
 }

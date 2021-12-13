@@ -23,7 +23,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="#00FFFFFF"
                 android:text="Select Photo"
@@ -33,10 +32,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/selectphoto_imageview_register"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 app:layout_constraintBottom_toBottomOf="@+id/selectphoto_button_register"
                 app:layout_constraintEnd_toEndOf="@+id/selectphoto_button_register"
                 app:layout_constraintStart_toStartOf="@+id/selectphoto_button_register"
@@ -45,7 +44,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/ic_bg_profile"
             android:scrollbarStyle="insideOverlay">
 
@@ -169,6 +168,7 @@
                             android:id="@+id/button6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:onClick="message"
                             app:backgroundTint="#FFFFFF"
                             app:icon="@drawable/ic_chat"
                             app:iconGravity="textTop"

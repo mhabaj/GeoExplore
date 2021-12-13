@@ -11,8 +11,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide.with
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -165,4 +167,9 @@ class Profile : AppCompatActivity() {
 
 
     }
+    fun message(view : View){
+            val intent = Intent(this, MessageActivity::class.java)
+            startActivity(intent)
+    }
+
 }
