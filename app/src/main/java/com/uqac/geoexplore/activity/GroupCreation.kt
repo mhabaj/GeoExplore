@@ -1,5 +1,6 @@
 package com.uqac.geoexplore.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -112,6 +113,7 @@ class GroupCreation : AppCompatActivity() {
     }
 
     fun createGroupInDatabase(view: android.view.View) {
+        var courseName: String? = null
         MainScope().launch {
             groupToAdd = Functions.retrieveUid(usersInGroup)!!
             for (userID in groupToAdd.participants!!)
@@ -119,11 +121,13 @@ class GroupCreation : AppCompatActivity() {
 
             db.collection("Course").document(courseID).update("groups", FieldValue.arrayUnion(groupToAdd)).addOnSuccessListener {
                 println("Group successfully added !")
-
-
             }
+            courseName = Functions.getCourseFromId(courseID)?.name!!
         }
         println("Adding to course $courseID a new group")
         Toast.makeText(this, "Group created !", Toast.LENGTH_LONG).show()
+        startActivity(
+            Intent(this, CourseDetails::class.java)
+            .putExtra("courseName", courseName))
     }
 }

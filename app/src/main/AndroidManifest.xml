@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeoExplorer">
         <activity
+            android:name=".activity.CheckpointCreation"
+            android:exported="false" />
+        <activity
             android:name=".activity.GroupDetails"
             android:exported="false" />
         <activity

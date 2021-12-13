@@ -9,12 +9,12 @@ data class Course (var name: String ?= null,
                    var miscInfo:CourseMiscDetails ?= null,
                    var location: GeoPoint ?= null,
                    var groups: ArrayList<Group> ?= null,
-                   var checkPoint: CheckPoint ?= null,
+                   var checkpoints: ArrayList<CheckPoint> ?= null,
                    var feed: Feed ?= null) {
 
 
     override fun toString(): String {
-        return "Course(name=$name, miscInfo=$miscInfo, location=$location, groups=$groups, checkPoint=$checkPoint, feed=$feed)\n"
+        return "Course(name=$name, miscInfo=$miscInfo, location=$location, groups=$groups, checkpoints=$checkpoints, feed=$feed)\n"
     }
 
 /* private lateinit var id : String
